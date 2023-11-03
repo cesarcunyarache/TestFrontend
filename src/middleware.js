@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { jwtVerify } from "jose";
 
 export async function middleware(request) {
 
@@ -7,21 +8,16 @@ export async function middleware(request) {
   if (!jwt) return NextResponse.redirect(new URL("/login", request.url));
 
   try {
-    const response = await fetch(`http://localhost/api/clienteAuth/verify`, {
-      method: 'GET',
-      credentials: 'include'
-    });
-    const data = await response.json();
-    if (data?.status === "ok") {
-      return NextResponse.next();
-    } else {
-      throw new Error();
-    }
+    const { payload } = await jwtVerify(
+      jwt.value,
+      new TextEncoder().encode("83837849399292/**//")
+    );
+    return NextResponse.next();
   } catch (error) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: ["/dashboard/:path*", '/datos-personales'],
 };

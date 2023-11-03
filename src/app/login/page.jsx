@@ -22,7 +22,7 @@ export default function Page() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       const response = await postLogin(data);
-      if (response.error) toast.error(response.error.data.message); 
+      if (response.error) console.log(response.error); /* toast.error(response.error.data.message) */; 
       if (response.data) console.log(response.data)
      
     } catch (error) {

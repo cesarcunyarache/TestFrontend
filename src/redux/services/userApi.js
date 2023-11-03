@@ -34,6 +34,36 @@ export const userApi = createApi({
     getVerify: builder.query({
       query: () => "/clienteAuth/verify",
     }),
+
+    putUpdate: builder.mutation({
+      query: (data) => ({
+        url: "/cliente/",
+        method: "PUT",
+        body: data,
+        credentials: "include",
+      }),
+    }),
+
+    postSendOTP: builder.mutation({
+      query: (data) => ({
+        url: "/clienteAuth/sendOtp",
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }),
+    }),
+
+
+    postResendOTP: builder.mutation({
+      query: (data) => ({
+        url: "clienteAuth/resendOtp",
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }),
+    }),
+
+
   }),
 });
 
@@ -41,5 +71,8 @@ export const {
   usePostLoginMutation,
   usePostRegisterMutation,
   useGetProfileQuery,
-  useGetVerifyQuery
+  useGetVerifyQuery,
+  usePutUpdateMutation,
+  usePostSendOTPMutation,
+  usePostResendOTPMutation
 } = userApi;

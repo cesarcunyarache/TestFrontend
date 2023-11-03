@@ -127,6 +127,7 @@ export default function NavBar() {
             <DropdownMenu
               aria-label="Profile Actions"
               variant="flat"
+            
               onAction={(key) => router.push(key)}
             >
               <DropdownItem key="profile" className="h-14 gap-2">

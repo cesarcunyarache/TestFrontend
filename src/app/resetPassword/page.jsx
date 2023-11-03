@@ -12,12 +12,12 @@ export default function page() {
         method="post"
         className="max-w-md p-4 mx-auto my-auto border rounded-lg"
       >
-        <h1 className="text-center text-lg font-black my-2">Resetear Contraseña</h1>
-        <Input label="Password" placeholder=" " type="password" isRequired />
+        <h1 className="text-center text-lg font-black my-2">Restablecer Contraseña</h1>
+        <Input label="Nueva Contraseña" placeholder=" " type="password" isRequired />
         <Input
-          label="Confirm Password"
+          label="Confirmar Contraseña"
           placeholder=" "
-          type="password"
+          type="confirmContrasena"
           isRequired
         />
         <Button type="submit">Restablecer</Button>

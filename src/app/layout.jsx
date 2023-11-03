@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import { NextUIProviders } from "../providers/NextUIProviders";
 import  ReduxProviders  from '../redux/ReduxProviders';
 import { Toaster } from "sonner";
-import TanstackProvider from "../providers/TanstackProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
