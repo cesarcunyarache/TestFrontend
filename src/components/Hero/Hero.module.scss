@@ -6,18 +6,6 @@
     }
 }
 
-@keyframes typing {
-    from {
-        width: 0;
-    }
-}
-
-@keyframes blink {
-    50% {
-        border-color: transparent;
-    }
-}
-
 .button_action {
     @media (min-width: 768px) {
         @apply text-[24px] w-[250px] p-2 mt-4 mb-8
@@ -30,20 +18,68 @@
     }
 }
 
+
+
 .body_page {
+    @apply flex flex-col;
+
     @media (min-width: 768px) {
-        @apply flex justify-between w-auto
+        @apply flex flex-row items-start
     }
 }
 
+.content_lateral {
+    @media (min-width: 768px) {
+        @apply flex flex-col w-[80%]
+    }
+}
+
+.order_information {
+    @apply pt-4
+}
+
+
+
 .slogan {
     @media (min-width: 768px) {
-        @apply text-[34px] w-[60%]
+        @apply text-[30px] w-[80%]
     }
 }
 
 .presentation {
     @media (min-width: 768px) {
-        @apply text-[22px] w-[60%]
+        @apply text-[16px] w-[80%]
+    }
+}
+
+.event_experience {
+    @apply flex flex-col;
+
+    @media (min-width: 768px) {
+        @apply flex flex-col pt-8
+    }
+}
+
+.event h2 {
+    @media (min-width: 768px) {
+        @apply text-[24px]
+    }
+}
+
+.event h3 {
+    @media (min-width: 768px) {
+        @apply text-[18px]
+    }
+}
+
+.content_event {
+    @media (min-width: 768px) {
+        @apply flex flex-row w-[60%]
+    }
+}
+
+.info_event {
+    @media (min-width: 768px) {
+        @apply pl-4
     }
 }

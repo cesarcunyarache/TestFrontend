@@ -1,3 +1,5 @@
 .information_order {
-  
+    @media (min-width: 768px) {
+        @apply mt-0
+    }
 }

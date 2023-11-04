@@ -21,7 +21,7 @@ import Link from "next/link";
 import { AcmeLogo } from "./AcmeLogo.jsx";
 import { useGetVerifyQuery } from "../../redux/services/userApi";
 import DropdownRend from "./Dropdown";
-import { useGetLogoutQuery, usePostLogoutMutation, useGetProfileQuery} from '../../redux/services/userApi'
+import { useGetLogoutQuery, usePostLogoutMutation, useGetProfileQuery } from '../../redux/services/userApi'
 
 export default function NavBar() {
   const router = useRouter();
@@ -29,9 +29,9 @@ export default function NavBar() {
 
   const { data, isLoading, isError, error } = useGetVerifyQuery();
 
-  const {data: profile, isLoading: isLoadingProfile} = useGetProfileQuery();
+  const { data: profile, isLoading: isLoadingProfile } = useGetProfileQuery();
 
-  
+
 
   const [postLogout] = usePostLogoutMutation()
   /* if (!isLoading) console.log(data); */
@@ -39,14 +39,15 @@ export default function NavBar() {
   const handeLogout = async () => {
     const response = await postLogout();
     console.log(response);
-    window.location.href  = "/"
+    window.location.href = "/"
   }
 
 
   const menuItems = [
     "Inicio",
-    "About",
-    "Acerca de",
+    "Sobre nosotros",
+    "Experiencias",
+    "Acerca de"
   ];
   return (
     <Navbar
@@ -68,18 +69,23 @@ export default function NavBar() {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
-          <Link color="foreground" href="#">
-          Inicio
+          <Link color="foreground" href="#Inicio">
+            Inicio
           </Link>
         </NavbarItem>
         <NavbarItem isActive className="border-b-2 border-blue-">
-          <Link href="#" aria-current="page">
-          About
+          <Link color="foreground" href="#Sobre-nosotros">
+            Sobre nosotros
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
-          Acerca de
+          <Link color="foreground" href="#Experiencias">
+            Experiencias
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="#Acerca-de">
+            Acerca de
           </Link>
         </NavbarItem>
         {/* <NavbarItem>
@@ -110,8 +116,8 @@ export default function NavBar() {
                 index === 2
                   ? "warning"
                   : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
+                    ? "danger"
+                    : "foreground"
               }
               href="#"
               size="lg"
@@ -140,7 +146,7 @@ export default function NavBar() {
             <DropdownMenu
               aria-label="Profile"
               variant="flat"
-              
+
               onAction={(key) => router.push(key)}
             >
               <DropdownItem key="/datos-personales" className="h-14 gap-2">

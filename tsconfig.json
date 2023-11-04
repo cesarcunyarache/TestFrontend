@@ -26,8 +26,17 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/redux/hook.js", "src/components/Footer/index.jsx", "src/components/Experiences/Experiences.jsx"  ],
+    "**/*.tsx",
+    "src/redux/hook.js",
+    "src/components/Footer/index.jsx",
+    "src/components/Experiences/Experiences.jsx",
+    "src/components/Content_Opinion/index.jsx",
+    "src/components/Information_Order/index.jsx",
+    "src/components/Hero/index.jsx",
+    "src/components/Head_Opinion/Head_Opinion.jsx",
+    "src/components/More_Information/index.jsx",
+    "src/components/Insert_Opinion/index.jsx"
+  ],
   "exclude": [
     "node_modules"
   ]

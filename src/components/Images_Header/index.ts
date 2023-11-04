@@ -1,1 +1,0 @@
-export { default as Images_Header } from './Images_Header';

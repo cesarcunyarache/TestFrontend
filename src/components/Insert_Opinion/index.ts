@@ -1,1 +1,0 @@
-export { default as Insert_Opinion } from './Insert_Opinion';
