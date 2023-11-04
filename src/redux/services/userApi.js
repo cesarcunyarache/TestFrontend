@@ -53,16 +53,42 @@ export const userApi = createApi({
       }),
     }),
 
-
     postResendOTP: builder.mutation({
       query: (data) => ({
-        url: "clienteAuth/resendOtp",
+        url: "/clienteAuth/resendOtp",
         method: "POST",
         body: data,
         credentials: "include",
       }),
     }),
 
+    postForgetPassword: builder.mutation({
+      query: (data) => ({
+        url: "clienteAuth/forgetPassword",
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }),
+    }),
+
+    putResetPassword: builder.mutation({
+      query: (data) => ({
+        url: "clienteAuth/resetPassword",
+        method: "PUT",
+        body: data,
+        credentials: "include",
+      }),
+    }),
+
+    postLogout: builder.mutation({
+      query: () => ({
+        url: "/clienteAuth/logout",
+        method: "POST",
+        credentials: "include",
+      }),
+    }),
+
+    
 
   }),
 });
@@ -74,5 +100,8 @@ export const {
   useGetVerifyQuery,
   usePutUpdateMutation,
   usePostSendOTPMutation,
-  usePostResendOTPMutation
+  usePostResendOTPMutation,
+  usePostForgetPasswordMutation,
+  usePutResetPasswordMutation,
+  usePostLogoutMutation,
 } = userApi;

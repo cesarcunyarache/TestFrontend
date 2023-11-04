@@ -13,7 +13,7 @@ export default function ProviderRedux() {
       {/* <Button className="w-10" onClick={() => toast.success("Welcome!!", {
         icon: <Suss/>
       })}>Clic</Button> */}
-      <Modal/>
+   
     </div>
   );
 }

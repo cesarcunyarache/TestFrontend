@@ -21,6 +21,7 @@ import Link from "next/link";
 import { AcmeLogo } from "./AcmeLogo.jsx";
 import { useGetVerifyQuery } from "../../redux/services/userApi";
 import DropdownRend from "./Dropdown";
+import { useGetLogoutQuery, usePostLogoutMutation, useGetProfileQuery} from '../../redux/services/userApi'
 
 export default function NavBar() {
   const router = useRouter();
@@ -28,7 +29,19 @@ export default function NavBar() {
 
   const { data, isLoading, isError, error } = useGetVerifyQuery();
 
+  const {data: profile, isLoading: isLoadingProfile} = useGetProfileQuery();
+
+  
+
+  const [postLogout] = usePostLogoutMutation()
   /* if (!isLoading) console.log(data); */
+
+  const handeLogout = async () => {
+    const response = await postLogout();
+    console.log(response);
+    window.location.href  = "/"
+  }
+
 
   const menuItems = [
     "Inicio",
@@ -125,14 +138,14 @@ export default function NavBar() {
 
           {!isLoading && data?.status === "ok" ? (
             <DropdownMenu
-              aria-label="Profile Actions"
+              aria-label="Profile"
               variant="flat"
-            
+              
               onAction={(key) => router.push(key)}
             >
-              <DropdownItem key="profile" className="h-14 gap-2">
+              <DropdownItem key="/datos-personales" className="h-14 gap-2">
                 <p className="font-semibold">Sesion iniciada como</p>
-                <p className="font-semibold">user@example.com</p>
+                <p className="font-semibold">{profile?.data?.correo}</p>
               </DropdownItem>
               <DropdownItem key="/datos-personales">Mis datos</DropdownItem>
               <DropdownItem key="team_settings">Reservas</DropdownItem>
@@ -140,11 +153,11 @@ export default function NavBar() {
               <DropdownItem key="configurations">Configuracion</DropdownItem>
               <DropdownItem key="system">Contactanos</DropdownItem>
               <DropdownItem key="help_and_feedback"> Ayuda y comentarios</DropdownItem>
-              <DropdownItem key="logout" color="danger">Log Out</DropdownItem>
+              <DropdownItem key="#" textValue="Logout" onClick={handeLogout} color="danger">Log Out</DropdownItem>
             </DropdownMenu>
           ) : (
             <DropdownMenu
-              aria-label="Profile Actions"
+              aria-label="Profile Auth"
               variant="flat"
               onAction={(key) => router.push(key)}
             >

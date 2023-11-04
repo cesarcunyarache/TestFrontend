@@ -129,7 +129,7 @@ export default function Registro() {
           register={register}
         />
         <Input
-          label="Email"
+          label="Correo"
           type="email"
           placeholder=" "
           name="correo"
@@ -137,7 +137,7 @@ export default function Registro() {
           register={register}
         />
         <Input
-          label="Password"
+          label="Contraseña"
           placeholder=" "
           type="password"
           name="contrasena"
@@ -145,7 +145,7 @@ export default function Registro() {
           register={register}
         />
         <Input
-          label="Confirm Password"
+          label="Confirmar Contraseña"
           placeholder=" "
           type="password"
           isRequired
