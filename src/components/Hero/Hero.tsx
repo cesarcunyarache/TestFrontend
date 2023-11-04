@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Hero.module.scss';
 import Image from 'next/image'
-import Experiences from '../Experiences/Experiences';
+import Experiences from '../Experiences';
 import Information_Order from '../Information_Order/Information_Order';
 import Head_Opinion from '../Head_Opinion/Head_Opinion';
 import { Content_Opinion } from '../Content_Opinion';

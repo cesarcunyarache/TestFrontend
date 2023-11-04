@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/redux/hook.js"  ],
+, "src/redux/hook.js", "src/components/Footer/index.jsx", "src/components/Experiences/Experiences.jsx"  ],
   "exclude": [
     "node_modules"
   ]
