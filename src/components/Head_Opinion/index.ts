@@ -1,0 +1,1 @@
+export { default as Head_Opinion } from './Head_Opinion';

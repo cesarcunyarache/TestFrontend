@@ -1,0 +1,1 @@
+export { default as Content_Opinion } from './Content_Opinion';

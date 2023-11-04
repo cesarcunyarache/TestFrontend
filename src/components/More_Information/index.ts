@@ -1,0 +1,1 @@
+export { default as More_Information } from './More_Information';

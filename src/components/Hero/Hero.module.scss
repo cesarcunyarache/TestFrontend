@@ -1,0 +1,49 @@
+.headline {
+    @apply text-[36px] w-[320px] m-auto;
+
+    @media (min-width: 768px) {
+        @apply text-[60px] leading-[80px] pt-8 p-2 w-[800px] m-auto;
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.button_action {
+    @media (min-width: 768px) {
+        @apply text-[24px] w-[250px] p-2 mt-4 mb-8
+    }
+}
+
+.socials {
+    @media (min-width: 768px) {
+        @apply w-[100px] h-[100px] m-auto
+    }
+}
+
+.body_page {
+    @media (min-width: 768px) {
+        @apply flex justify-between w-auto
+    }
+}
+
+.slogan {
+    @media (min-width: 768px) {
+        @apply text-[34px] w-[60%]
+    }
+}
+
+.presentation {
+    @media (min-width: 768px) {
+        @apply text-[22px] w-[60%]
+    }
+}
