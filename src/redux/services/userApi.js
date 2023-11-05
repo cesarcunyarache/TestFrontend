@@ -88,7 +88,32 @@ export const userApi = createApi({
       }),
     }),
 
-    
+    postSendOTPUpdateEmail: builder.mutation({
+      query: (data) => ({
+        url: "clienteAuth/sendOtpUpdateEmail",
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }),
+    }),
+
+    putUpdateEmail: builder.mutation({
+      query: (data) => ({
+        url: "clienteAuth/updateEmail",
+        method: "PUT",
+        body: data,
+        credentials: "include",
+      }),
+    }),
+
+    putUpdatePassword: builder.mutation({
+      query: (data) => ({
+        url: "clienteAuth/updatePassword",
+        method: "PUT",
+        body: data,
+        credentials: "include",
+      }),
+    }),
 
   }),
 });
@@ -104,4 +129,7 @@ export const {
   usePostForgetPasswordMutation,
   usePutResetPasswordMutation,
   usePostLogoutMutation,
+  usePutUpdateEmailMutation,
+  usePostSendOTPUpdateEmailMutation,
+  usePutUpdatePasswordMutation,
 } = userApi;
