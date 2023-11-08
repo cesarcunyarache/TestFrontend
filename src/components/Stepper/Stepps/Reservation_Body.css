@@ -17,3 +17,12 @@
 .seat-mark:hover {
     background-color: #014594;
 }
+
+.imagenUno span {
+    top: 50%;
+    /* Posición vertical centrada */
+    left: 50%;
+    /* Posición horizontal centrada */
+    transform: translate(-50%, -50%);
+    /* Centrar el elemento en el centro del contenedor */
+}

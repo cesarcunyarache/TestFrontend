@@ -19,5 +19,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", '/datos-personales', '/reservar'],
+  matcher: ["/dashboard/:path*", '/datos-personales'],
 };

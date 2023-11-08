@@ -94,7 +94,7 @@ export default function Reservation_Head() {
         size="md"
         labelPlacement="outside"
         label="Comentario"
-        placeholder="Ingrese la cantidad de comensales"
+        placeholder="Ingrese un comentario (opcional)"
         name="Comentario"
       />
 
