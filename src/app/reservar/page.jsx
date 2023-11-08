@@ -4,9 +4,9 @@ import React from "react";
 import Load from "../../components/Load";
 import Layout from "../../components/Layout";
 import Wizard from "../../components/Stepper/Wizzard";
-import DateTime from "../../components/Stepper/Stepps/DateTime";
-import Mesas from '../../components/Stepper/Stepps/Mesas'
-import Confirm from '../../components/Stepper/Stepps/Confirm'
+import Reservation_Head from "../../components/Stepper/Stepps/Reservation_Head";
+import Reservation_Body from '../../components/Stepper/Stepps/Reservation_Body'
+import Reservation_Final from '../../components/Stepper/Stepps/Reservation_Final'
 
 import { Stepper, Step, Button } from "@material-tailwind/react";
 
@@ -21,11 +21,11 @@ export default function page() {
   const display = (step) => {
     switch (step) {
       case 0:
-        return <DateTime/>;
+        return <Reservation_Head/>;
       case 1:
-        return <Mesas/>;
+        return <Reservation_Body/>;
       case 2:
-        return <Confirm/>;
+        return <Reservation_Final/>;
     }
   };
 
@@ -33,9 +33,9 @@ export default function page() {
     <Layout>
       {/* <div className="h-[92vh] bg-zinc-100 w-full">
         <div className="max-w-3xl mx-auto p-5 overflow-auto"> */}
-      <div className="h-[92vh] w-full bg-zinc-100">
-        <div className="max-w-3xl mx-auto">
-          <div className="py-8 mx-6">
+      <div className="h-[92vh] w-full bg-zinc-100 overflow-auto">
+        <div className="max-w-3xl mx-auto ">
+          <div className="py-8 mx-6  w-full">
           <Stepper
             activeStep={activeStep}
             isLastStep={(value) => setIsLastStep(value)}

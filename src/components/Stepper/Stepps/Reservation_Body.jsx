@@ -9,7 +9,7 @@ export default function Reservation_Body() {
     };
 
     return (
-        <div>
+        <form className="border rounded-lg bg-white p-6 ">
             <div className="contenido">
                 <h2 className="font-bold text-[18px] pb-2">Terraza Bravazo</h2>
 
@@ -104,6 +104,6 @@ export default function Reservation_Body() {
                     />
                 )}
             </div>
-        </div>
+            </form>
     )
 };
