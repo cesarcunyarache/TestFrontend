@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Content_Opinion.module.scss';
+import styles from './Content_Opinion.css';
 
 export default function Content_Opinion() {
 	return (

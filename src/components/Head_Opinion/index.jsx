@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import styles from './Head_Opinion.module.scss';
+import styles from './Head_Opinion.css';
 
 export default function Head_Opinion() {
 	return (
@@ -37,7 +37,7 @@ export default function Head_Opinion() {
 				</p>
 			</div>
 			<div className="pt-4 pb-4 animate-bounce">
-				<a className="bg-red-700 rounded text-white text-[14px] font-semibold p-2" href="">Dejar Opinión</a>
+				<a className="bg-red-600 rounded text-white text-[14px] font-semibold p-2" href="">Dejar Opinión</a>
 			</div>
 		</div>
 	)

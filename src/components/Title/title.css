@@ -1,0 +1,7 @@
+.contenedor {
+    @media (max-width: 768px) {
+        font-size: 36px;
+        width: 320px;
+        margin: auto;
+    }
+}

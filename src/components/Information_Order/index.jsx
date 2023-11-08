@@ -1,23 +1,23 @@
 import React from 'react';
-import styles from './Information_Order.module.scss';
+import styles from './Information_Order.css';
 
 export default function Information_Order() {
 	return (
-		<div className={`${styles.information_order} border p-4 rounded border-[#d8d9db]`}>
+		<div className="informacion_orden border p-4 rounded border-[#d8d9db]">
 			<h2 className="font-bold text-[18px] text-center">
 				A domicilio o para llevar
 			</h2>
 			<div className="pt-4 pb-2">
-				<p className="text-[14px]">
+				<p className="text-[16px]">
 					Contacto
 				</p>
 			</div>
-			<a className="border p-2 rounded border-[#d8d9db] text-[14px] font-semibold text-red-700 hover:text-white hover:bg-red-700" href="tel:+51976569677">
+			<a className="border p-2 rounded border-[#d8d9db] text-[14px] font-semibold text-red-600 hover:text-white hover:bg-red-600" href="tel:+51976569677">
 				+51 976 569 677
 			</a>
 
 			<div className="pt-4 pb-2">
-				<p className="text-[14px]">
+				<p className="text-[16px]">
 					Otras opciones
 				</p>
 			</div>
