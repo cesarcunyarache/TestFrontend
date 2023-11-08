@@ -63,7 +63,7 @@ export default function Profile(data = {}) {
     try {
       console.log(data); 
       const response = await putUpdate(data);
-      if (response.error)  console.log(response.error);/* toast.error(response.error.data.message) */;
+      if (response.error)  toast.error(response.error.data.message);
       if (response.data) toast.success(response.data.message);
     } catch (error) {
       console.error(error);

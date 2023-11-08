@@ -14,6 +14,7 @@ export default function UpdateEmail() {
     handleSubmit,
     reset,
     setValue,
+    watch,
     formState: { errors },
   } = useForm();
 
@@ -78,6 +79,10 @@ export default function UpdateEmail() {
                   value: true,
                   message: "Este campo es requerido",
                 },
+                minLength: {
+                  value: 6,
+                  message: "La contraseña debe tener al menos 6 caracteres",
+                },
             
               }}
               color={errors.nuevaContrasena && "danger"}
@@ -98,6 +103,9 @@ export default function UpdateEmail() {
                   value: true,
                   message: "Este campo es requerido",
                 },
+                validate: (value) =>
+                 value === watch('nuevaContrasena') || "Las contraseñas no coinciden",
+                
             
               }}
               color={errors.confirmContrasena && "danger"}

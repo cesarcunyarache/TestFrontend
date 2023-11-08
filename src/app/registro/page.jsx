@@ -120,6 +120,15 @@ export default function Registro() {
           name="nombres"
           isRequired
           register={register}
+          onKeyDown={(e) => {
+            if (
+              e.keyCode !== 32 &&
+              e.keyCode !== 8 &&
+              (e.keyCode < 65 || e.keyCode > 90)
+            ) {
+              e.preventDefault();
+            }
+          }}
         />
         <Input
           label="Apellidos"
@@ -127,6 +136,15 @@ export default function Registro() {
           name="apellidos"
           isRequired
           register={register}
+          onKeyDown={(e) => {
+            if (
+              e.keyCode !== 32 &&
+              e.keyCode !== 8 &&
+              (e.keyCode < 65 || e.keyCode > 90)
+            ) {
+              e.preventDefault();
+            }
+          }}
         />
         <Input
           label="Correo"

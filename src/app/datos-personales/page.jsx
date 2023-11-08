@@ -9,24 +9,20 @@ import Profile from "../../components/Profile";
 import UpdateEmail from "../../components/Profile/UpdateEmail";
 import UpdatePassword from "../../components/Profile/UpdatePassword";
 
-import Load from '../../components/Loading'
+import Load from "../../components/Load";
 export default function page() {
   const { data: user, isLoading } = useGetProfileQuery();
 
   if (isLoading) {
-    return (
-      <Load/>
-    );
+    return <Load />;
   }
-
 
   return (
     <div>
       <Layaout>
-        <div className="max-h-full bg-zinc-100">
-          <div className="max-w-3xl mx-auto ">
+        <div className="max-h-full w-full bg-zinc-100">
+          <div className="max-w-3xl mx-auto">
             <div className="border-b border-gray-900/10 pb-5 p-5">
-              
               {!isLoading && <Profile data={user?.data} />}
 
               {!isLoading && <UpdateEmail data={user?.data} />}

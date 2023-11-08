@@ -154,7 +154,7 @@ export default function NavBar() {
                 <p className="font-semibold">{profile?.data?.correo}</p>
               </DropdownItem>
               <DropdownItem key="/datos-personales">Mis datos</DropdownItem>
-              <DropdownItem key="team_settings">Reservas</DropdownItem>
+              <DropdownItem key="/reservar">Reservar</DropdownItem>
               <DropdownItem key="analytics">Puntos</DropdownItem>
               <DropdownItem key="configurations">Configuracion</DropdownItem>
               <DropdownItem key="system">Contactanos</DropdownItem>
