@@ -33,9 +33,9 @@ export default function page() {
     <Layout>
       {/* <div className="h-[92vh] bg-zinc-100 w-full">
         <div className="max-w-3xl mx-auto p-5 overflow-auto"> */}
-      <div className=" h-[92vh] w-full bg-zinc-100 overflow-auto">
-        <div className="max-w-3xl mx-auto">
-          <div className="py-8 mx-6  w-full">
+      <div className="h-[92vh] w-full bg-zinc-100 overflow-auto">
+        <div className="max-w-3xl mx-auto ">
+          <div className="py-8 mx-6  w-full pr-10">
           <Stepper
             activeStep={activeStep}
             isLastStep={(value) => setIsLastStep(value)}
