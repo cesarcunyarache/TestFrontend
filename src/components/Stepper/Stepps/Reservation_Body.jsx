@@ -9,7 +9,7 @@ export default function Reservation_Body() {
     };
 
     return (
-        <form className="border rounded-lg bg-white p-6 ">
+        <form className="border rounded-lg bg-white p-6  max-w-md">
             <div className="contenido">
                 <h2 className="font-bold text-[18px] pb-2">Terraza Bravazo</h2>
 

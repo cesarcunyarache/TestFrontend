@@ -12,7 +12,7 @@ export default function Reservation_Head() {
   };
 
   return (
-    <form className="border rounded-lg bg-white p-6 ">
+    <form className="border rounded-lg bg-white p-6  ">
       {/*  <div className="datos_reserva border rounded w-[80%] p-8 font-semibold"> */}
       <h2 className="font-bold text-[18px]">DATOS DE RESERVA</h2>
       <p className="pt-2 pb-2 font-normal text-[14px]">
