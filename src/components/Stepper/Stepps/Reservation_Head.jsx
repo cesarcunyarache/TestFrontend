@@ -4,15 +4,30 @@ import Input from "../../Form/Input";
 
 import { Select, SelectItem } from "@nextui-org/react";
 import { Textarea } from "@nextui-org/react";
-export default function Reservation_Head() {
-  const [selectedNivel, setSelectedNivel] = useState("opcion1"); // Define selectedNivel y su valor inicial
+import { useForm } from "react-hook-form";
+import Button from "../../Form/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { update } from "../../../redux/features/userSlice";
 
+export default function Reservation_Head() {
+  const [selectedNivel, setSelectedNivel] = useState("opcion1"); // Define selectedNivel y su
+
+  const { register, handleSubmit } = useForm();
+
+  const dispatch = useDispatch();
   const handleNivelChange = (event) => {
     setSelectedNivel(event.target.value);
   };
+  const reserva = useSelector((state) => state.reserva);
+
+  const onSubmit = handleSubmit(async (data) => {
+    dispatch(update(data));
+    console.log(data);
+    console.log(reserva);
+  });
 
   return (
-    <form className="border rounded-lg bg-white p-6  ">
+    <form onSubmit={onSubmit} className="border rounded-lg bg-white p-6  ">
       {/*  <div className="datos_reserva border rounded w-[80%] p-8 font-semibold"> */}
       <h2 className="font-bold text-[18px]">DATOS DE RESERVA</h2>
       <p className="pt-2 pb-2 font-normal text-[14px]">
@@ -24,6 +39,7 @@ export default function Reservation_Head() {
         placeholder="Ingrese la cantidad de comensales"
         type="number"
         name="cantComensales"
+        register={register}
       />
 
       <Input
@@ -31,6 +47,7 @@ export default function Reservation_Head() {
         placeholder="Ingrese la fecha"
         type="date"
         name="fecha"
+        register={register}
       />
 
       {/* <label>
@@ -68,6 +85,7 @@ export default function Reservation_Head() {
         step="1h"
         min={8}
         max={20}
+        register={register}
       />
 
       <Select
@@ -78,6 +96,8 @@ export default function Reservation_Head() {
         className="py-2"
         radius="sm"
         size="md"
+        name="nivel"
+        {...register('nivel')}
       >
         <SelectItem key={1} value="Segundo nivel">
           Segundo nivel
@@ -95,8 +115,11 @@ export default function Reservation_Head() {
         labelPlacement="outside"
         label="Comentario"
         placeholder="Ingrese un comentario (opcional)"
-        name="Comentario"
+        name="comentario"
+        {...register('comentario')}
       />
+
+      <Button type="submit">Submit</Button>
 
       {/*  <button className="text-[14px] m-auto text-center text-white font-semibold bg-red-600 rounded h-auto p-2 hover:bg-red-700">
             Comprobar disponibilidad

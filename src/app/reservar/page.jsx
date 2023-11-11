@@ -8,6 +8,8 @@ import Reservation_Head from "../../components/Stepper/Stepps/Reservation_Head";
 import Reservation_Body from '../../components/Stepper/Stepps/Reservation_Body'
 import Reservation_Final from '../../components/Stepper/Stepps/Reservation_Final'
 
+
+import {useSelector} from 'react-redux'
 import { Stepper, Step, Button } from "@material-tailwind/react";
 
 export default function page() {
@@ -28,6 +30,9 @@ export default function page() {
         return <Reservation_Final/>;
     }
   };
+
+ const reserva = useSelector( state => state.reserva);
+ console.log(reserva);
 
   return (
     <Layout>
