@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
@@ -12,8 +12,8 @@ interface Props {
 }
 export default function ReduxProviders({ children }: Props) {
   return (
-    <PersistGate persistor={persistor}>
-      <Provider store={store}>{children}</Provider>
-    </PersistGate>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>{children}</PersistGate>
+    </Provider>
   );
 }

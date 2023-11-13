@@ -33,7 +33,7 @@ export default function Page() {
 
   if (data) {
     if (data.id) {
-      router.push("/");
+      router.push("/").then(() => window.location.reload());;
     }
   }
 
