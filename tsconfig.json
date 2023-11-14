@@ -36,7 +36,7 @@
     "src/components/Head_Opinion/Head_Opinion.jsx",
     "src/components/More_Information/index.jsx",
     "src/components/Insert_Opinion/index.jsx"
-  ],
+, "src/context/SteppsContext.jsx"  ],
   "exclude": [
     "node_modules"
   ]

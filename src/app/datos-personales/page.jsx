@@ -14,9 +14,9 @@ export default function page() {
   const { data: user, isLoading } = useGetProfileQuery();
 
   if (isLoading) {
-    return <Load />;
+    return <Load/>
   }
-
+ 
   return (
     <div>
       <Layaout>

@@ -9,7 +9,6 @@ export const reservaSlice = createSlice({
     initialState,
     reducers: {
         update: (state, action) => {
-            console.log(action.payload)
             state.value = { ...state.value, ...action.payload };
         },
     }
