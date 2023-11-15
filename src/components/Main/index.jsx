@@ -9,6 +9,7 @@ import Experiences from '../Experiences';
 import Collaborators from '../Collaborators'
 import More_Information from '../More_Information';
 import Head_Opinion from '../Head_Opinion';
+import Link from '../Link';
 
 export default function Main() {
 
@@ -20,8 +21,8 @@ export default function Main() {
             <div className="cabecera">
                 <Title />
                 <div className="reserva pt-4 pb-8">
-                    <div className="button_reserva text-white text-[18px] font-bold text-center mx-auto bg-red-600 w-[200px] h-auto p-2 rounded-[5px] animate-bounce hover:bg-red-700 cursor-pointer">
-                        <p>RESERVA AHORA</p>
+                    <div className="mx-auto text-center">
+                        <Link className="button_reserva text-[18px] font-bold bg-red-600 w-auto h-auto px-4 py-2 rounded-[5px] animate-bounce hover:bg-red-700 cursor-pointer text-white font-sans hover:no-underline hover:text-white" redirect="/reservar" >RESERVA AHORA</Link>
                     </div>
                 </div>
 

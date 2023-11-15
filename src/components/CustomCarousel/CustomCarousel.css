@@ -19,16 +19,12 @@
         /* Muestra cinco imágenes en el carrusel a la vez */
         padding: 10px;
         box-sizing: border-box;
-        opacity: 1;
-        transition: opacity 0.3s ease;
-
-        /* Agrega una transición para la opacidad */
+        transition: 0.7s;
     }
 }
 
 .carousel-slide.active {
-    opacity: 1;
-    /* La imagen activa tiene opacidad completa */
+    transition: 0.7s;
     transform: scale(1.1);
     /* Aumenta el tamaño de la imagen en 1.1 veces (efecto "pop") */
 }
