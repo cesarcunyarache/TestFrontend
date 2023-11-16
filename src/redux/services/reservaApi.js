@@ -1,19 +1,27 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const reservaApi = createApi({
-  reducerPath: 'reserva',
+  reducerPath: 'reservas',
   refetchOnFocus: true,
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost/api",
+    baseUrl: process.env.NEXT_PUBLIC_API,
     credentials: "include",
   }),
-  tagTypes: ["Reserva"],
+  tagTypes: ["Reservas"],
   endpoints: (builder) => ({
-    
+    postReservaMesas: builder.mutation({
+      query: (data) => ({
+        url: "reserva/mesas",
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }),
+    }),
 
   }),
 });
 
 export const {
+  usePostReservaMesasMutation,
   
 } = reservaApi;

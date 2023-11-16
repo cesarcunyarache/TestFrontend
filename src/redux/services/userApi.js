@@ -4,7 +4,7 @@ export const userApi = createApi({
   reducerPath: 'user',
   refetchOnFocus: true,
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost/api",
+    baseUrl: process.env.NEXT_PUBLIC_API,
     credentials: "include",
   }),
   tagTypes: ["Profile"],
@@ -115,6 +115,14 @@ export const userApi = createApi({
       }),
     }),
 
+    postReservaMesas: builder.mutation({
+      query: (data) => ({
+        url: "reserva/mesas",
+        method: "POST",
+        body: data,
+      }),
+    }),
+
   }),
 });
 
@@ -132,4 +140,6 @@ export const {
   usePutUpdateEmailMutation,
   usePostSendOTPUpdateEmailMutation,
   usePutUpdatePasswordMutation,
+
+  usePostReservaMesasMutation
 } = userApi;

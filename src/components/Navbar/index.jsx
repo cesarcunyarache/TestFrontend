@@ -21,34 +21,39 @@ import Link from "next/link";
 import { AcmeLogo } from "./AcmeLogo.jsx";
 import { useGetVerifyQuery } from "../../redux/services/userApi";
 import DropdownRend from "./Dropdown";
-import { useGetLogoutQuery, usePostLogoutMutation, useGetProfileQuery } from '../../redux/services/userApi'
+import { useDispatch } from "react-redux";
+import { update } from "../../redux/features/userSlice";
+import {
+  useGetLogoutQuery,
+  usePostLogoutMutation,
+  useGetProfileQuery,
+} from "../../redux/services/userApi";
 
 export default function NavBar() {
   const router = useRouter();
+
+  const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const { data, isLoading, isError, error } = useGetVerifyQuery();
 
   const { data: profile, isLoading: isLoadingProfile } = useGetProfileQuery();
+/* 
+  if (!isLoadingProfile) {
+    const { apellidos, nombres, id } = profile?.data;
+     dispatch(update({ apellidos, nombres, id })); 
+  } */
 
-
-
-  const [postLogout] = usePostLogoutMutation()
+  const [postLogout] = usePostLogoutMutation();
   /* if (!isLoading) console.log(data); */
 
   const handeLogout = async () => {
     const response = await postLogout();
     console.log(response);
-    window.location.href = "/"
-  }
+    window.location.href = "/";
+  };
 
-
-  const menuItems = [
-    "Inicio",
-    "Sobre nosotros",
-    "Experiencias",
-    "Acerca de"
-  ];
+  const menuItems = ["Inicio", "Sobre nosotros", "Experiencias", "Acerca de"];
   return (
     <Navbar
       className="border-b-1"
@@ -116,8 +121,8 @@ export default function NavBar() {
                 index === 2
                   ? "warning"
                   : index === menuItems.length - 1
-                    ? "danger"
-                    : "foreground"
+                  ? "danger"
+                  : "foreground"
               }
               href="#"
               size="lg"
@@ -146,7 +151,6 @@ export default function NavBar() {
             <DropdownMenu
               aria-label="Profile"
               variant="flat"
-
               onAction={(key) => router.push(key)}
             >
               <DropdownItem key="/datos-personales" className="h-14 gap-2">
@@ -158,8 +162,18 @@ export default function NavBar() {
               <DropdownItem key="analytics">Puntos</DropdownItem>
               <DropdownItem key="configurations">Configuracion</DropdownItem>
               <DropdownItem key="system">Contactanos</DropdownItem>
-              <DropdownItem key="help_and_feedback"> Ayuda y comentarios</DropdownItem>
-              <DropdownItem key="#" textValue="Logout" onClick={handeLogout} color="danger">Log Out</DropdownItem>
+              <DropdownItem key="help_and_feedback">
+                {" "}
+                Ayuda y comentarios
+              </DropdownItem>
+              <DropdownItem
+                key="#"
+                textValue="Logout"
+                onClick={handeLogout}
+                color="danger"
+              >
+                Log Out
+              </DropdownItem>
             </DropdownMenu>
           ) : (
             <DropdownMenu

@@ -1,9 +1,24 @@
-import React from 'react'
+"use client"
 
-export default function Select() {
+import { Select as SelectUI, SelectItem } from "@nextui-org/react";
+
+export default function Select({className="", name = "",options = {}, register = () => {}, data = [], ...props }) {
   return (
-    <div>
-      
-    </div>
-  )
+    <SelectUI
+      variant="bordered"
+      labelPlacement="outside"
+      className={`py-2 ${className}`}
+      radius="sm"
+      size="md"
+
+      {...props}
+      {...register(name, options)}
+    >
+      {data.map((option) => (
+        <SelectItem key={option.key} value={option.value}>
+          {option.value}
+        </SelectItem>
+      ))}
+    </SelectUI>
+  );
 }

@@ -4,12 +4,13 @@ import React, { useState } from "react";
 import styles from "./Reservation_Head.css";
 import Input from "../../Form/Input";
 
-import { Select, SelectItem } from "@nextui-org/react";
+import { SelectItem } from "@nextui-org/react";
 import { Textarea } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import Button from "../../Form/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { update } from "../../../redux/features/userSlice";
+import { update } from "../../../redux/features/userSlice"
+import Select from '../../Form/Select'
 
 import { useSteppsState } from "../../../context/SteppsContext";
 
@@ -25,12 +26,15 @@ export default function SteppOne({ className = "" }) {
     setSelectedNivel(event.target.value);
   };
   const reserva = useSelector((state) => state.reserva);
+
+
+  const {cantComensales, fecha, hora, nivel, comentario} = reserva?.reservaState?.value;
   const { onHandleNext, step } = useSteppsState();
 
   const onSubmit = handleSubmit(async (data) => {
     dispatch(update(data));
-    console.log(data);
-    console.log(reserva);
+   console.log(data); 
+   /*  console.log(reserva); */
     onHandleNext();
   });
 
@@ -48,6 +52,7 @@ export default function SteppOne({ className = "" }) {
           type="number"
           name="cantComensales"
           register={register}
+          defaultValue={cantComensales}
           options={{
             required: {
               value: true,
@@ -64,7 +69,17 @@ export default function SteppOne({ className = "" }) {
           placeholder="Ingrese la fecha"
           type="date"
           name="fecha"
+          defaultValue={fecha}
           register={register}
+          options={{
+            required: {
+              value: true,
+              message: "Este campo es requerido",
+            },
+          }}
+          color={errors.fecha && "danger"}
+          isInvalid={errors.fecha ? true : false}
+          errorMessage={errors.fecha && errors.fecha.message}
         />
 
         <Input
@@ -76,37 +91,55 @@ export default function SteppOne({ className = "" }) {
           min={8}
           max={20}
           register={register}
+          defaultValue={hora}
+          options={{
+            required: {
+              value: true,
+              message: "Este campo es requerido",
+            },
+          }}
+          color={errors.hora && "danger"}
+          isInvalid={errors.hora ? true : false}
+          errorMessage={errors.hora && errors.hora.message}
         />
 
+     
+
         <Select
-          variant="bordered"
-          labelPlacement="outside"
-          placeholder="Seleccione el nivel"
-          label="Nivel"
-          className="py-2"
-          radius="sm"
-          size="md"
-          name="nivel"
-          {...register("nivel")}
-        >
-          <SelectItem key={1} value="Segundo nivel">
-            Segundo nivel
-          </SelectItem>
-          <SelectItem key={2} value=" Tercer nivel">
-            Tercer nivel
-          </SelectItem>
-        </Select>
+              placeholder="Seleccione el nivel"
+              label="Nivel"
+              name="nivel"
+              data={[
+                { key: "1", value: "Segundo nivel" },
+                { key: "2", value: "Tercer nivel" },
+              ]}
+              defaultSelectedKeys={[nivel]}
+              register={register}
+              options={{
+                validate: (value) => {
+                  if (value === "") {
+                    return "Este campo es requerido";
+                  }
+                },
+              }}
+              color={errors.nivel && "danger"}
+              isInvalid={errors.nivel ? true : false}
+              errorMessage={errors.nivel && errors.nivel.message}
+             
+            ></Select>
 
         <Textarea
           className="py-2"
           variant="bordered"
           radius="sm"
           size="md"
+          defaultValue={comentario}
           labelPlacement="outside"
           label="Comentario"
           placeholder="Ingrese un comentario (opcional)"
           name="comentario"
           {...register("comentario")}
+          
         />
       </div>
 
