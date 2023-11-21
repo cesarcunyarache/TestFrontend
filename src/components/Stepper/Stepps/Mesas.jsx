@@ -2,10 +2,15 @@
 
 import { useState } from "react";
 import { Tooltip, Divider, Button, Chip } from "@nextui-org/react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { update } from "../../../redux/features/reservaSlice";
 export default function Mesas({ data }) {
   const { idMesa, pLeft, pTop, estado, capacidad } = data;
   const [isActive, setIsActive] = useState(false);
+
+  const dispatch = useDispatch();
+  const reserva = useSelector((state) => state.reserva);
+  const { cantComensales, cantidad, mesas } = reserva?.reservaState?.value;
 
   const status = (state) => {
     switch (state) {
@@ -37,10 +42,39 @@ export default function Mesas({ data }) {
         key={idMesa}
         isIconOnly
         onClick={() => {
-          isActive ? setIsActive(false) : setIsActive(true);
+          /* isActive ? setIsActive(false) : setIsActive(true); */
+          if (cantidad >= 0) {
+            if (isActive) {
+              setIsActive(false);
+              dispatch(
+                update({
+                  cantidad: parseInt(cantidad) + parseInt(capacidad),
+                  mesas: mesas.filter((mesa) => mesa.idMesa !== idMesa),
+                })
+              );
+            } else {
+              setIsActive(true);
+              dispatch(
+                update({
+                  cantidad: parseInt(cantidad) - parseInt(capacidad),
+                  mesas: [...mesas, data],
+                })
+              );
+            }
+          } else {
+            if (isActive) {
+              setIsActive(false);
+              dispatch(
+                update({
+                  cantidad: parseInt(cantidad) + parseInt(capacidad),
+                  mesas: mesas.filter((mesa) => mesa.idMesa !== idMesa),
+                })
+              );
+            }
+          }
         }}
         style={{
-          width: "40px",
+          width: "5px",
           left: `${pLeft}%`,
           top: `${pTop}%`,
         }}

@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { userApi } from "./services/userApi";
 import { reservaApi } from "./services/reservaApi";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import reservaReducer from "./features/userSlice";
+import reservaReducer from "./features/reservaSlice";
 
 import thunk from "redux-thunk";
 /* import storage from "redux-persist/lib/storage"; */

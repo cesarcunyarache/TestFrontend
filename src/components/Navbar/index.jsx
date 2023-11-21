@@ -22,7 +22,7 @@ import { AcmeLogo } from "./AcmeLogo.jsx";
 import { useGetVerifyQuery } from "../../redux/services/userApi";
 import DropdownRend from "./Dropdown";
 import { useDispatch } from "react-redux";
-import { update } from "../../redux/features/userSlice";
+import { update } from "../../redux/features/reservaSlice";
 import {
   useGetLogoutQuery,
   usePostLogoutMutation,
@@ -141,9 +141,9 @@ export default function NavBar() {
               as="button"
               className="transition-transform p-1"
               color="default"
-              name="Jason Hughes"
+              name={profile?.data?.nombres}
               size="sm"
-              src="user.svg"
+              /* src="user.svg" */
             />
           </DropdownTrigger>
 

@@ -1,6 +1,6 @@
 "use cliente";
 import { Input } from "@nextui-org/react";
-export default function index({className="", name = "", register = () => {},  options = {}, ...props }) {
+export default function index({className="", name = "", register = () => {},  options = {}, onChange = () => {},...props }) {
   return (
     <Input
       className={`py-2 ${className}`}
@@ -11,6 +11,7 @@ export default function index({className="", name = "", register = () => {},  op
       type="text"
       {...props}
       {...register(name, options)}
+
     />
   );
 }

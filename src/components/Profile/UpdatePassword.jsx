@@ -104,9 +104,7 @@ export default function UpdateEmail() {
                   message: "Este campo es requerido",
                 },
                 validate: (value) =>
-                 value === watch('nuevaContrasena') || "Las contraseñas no coinciden",
-                
-            
+                 value === watch('nuevaContrasena') || "Las contraseñas no coinciden", 
               }}
               color={errors.confirmContrasena && "danger"}
               isInvalid={errors.confirmContrasena ? true : false}

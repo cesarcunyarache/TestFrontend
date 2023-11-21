@@ -7,6 +7,7 @@ import Mesas from "./Mesas";
 import { useDispatch, useSelector } from "react-redux";
 import Load from "../../Load";
 import { Spinner } from "@nextui-org/react";
+import {toast} from 'sonner'
 
 import { useSteppsState } from "../../../context/SteppsContext";
 import {
@@ -19,7 +20,8 @@ export default function SteppTwo({ className = "" }) {
 
   const reserva = useSelector((state) => state.reserva);
 
-  const { cantComensales, fecha, hora, nivel } = reserva?.reservaState?.value;
+  const { cantComensales, fecha, hora, nivel, mesas } =
+    reserva?.reservaState?.value;
 
   const [data, setData] = useState([]);
 
@@ -137,11 +139,7 @@ export default function SteppTwo({ className = "" }) {
                 {!isLoading &&
                   data.map((mesa) => {
                     if (mesa.nivel == "S") {
-                      return (
-                        <Mesas
-                          data={mesa}
-                        />
-                      );
+                      return <Mesas data={mesa} />;
                     }
                   })}
               </div>
@@ -172,7 +170,13 @@ export default function SteppTwo({ className = "" }) {
           Anterior
         </Button>
         <Button
-          /* type="submit" */ onClick={() => onHandleNext()}
+          /* type="submit" */ onClick={() => {
+            if (mesas?.length > 0) {
+              onHandleNext();
+            } else {
+              toast.error("Seleccione almenos una mesa");
+            }
+          }}
           className="w-32"
         >
           Siguiente
