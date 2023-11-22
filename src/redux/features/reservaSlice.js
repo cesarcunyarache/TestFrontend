@@ -1,20 +1,25 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    value: {}
-}
+  value: {
+    mesas: [],
+  },
+};
 
 export const reservaSlice = createSlice({
-    name: 'reserva',
-    initialState,
-    reducers: {
-        update: (state, action) => {
-            state.value = { ...state.value, ...action.payload };
-        },
-    }
+  name: "reserva",
+  initialState,
+  reducers: {
+    update: (state, action) => {
+      state.value = { ...state.value, ...action.payload };
+    },
+
+    reset: (state) => {
+      state.value = initialState.value;
+    },
+  },
 });
 
-export const {update} = reservaSlice.actions;
+export const { update, reset } = reservaSlice.actions;
 
 export default reservaSlice.reducer;
-

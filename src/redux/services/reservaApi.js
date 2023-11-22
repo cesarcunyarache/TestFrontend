@@ -18,10 +18,19 @@ export const reservaApi = createApi({
       }),
     }),
 
+    postCreateReserva: builder.mutation({
+      query: (data) => ({
+        url: "reserva/",
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }),
+    }),
+
   }),
 });
 
 export const {
   usePostReservaMesasMutation,
-  
+  usePostCreateReservaMutation,
 } = reservaApi;
