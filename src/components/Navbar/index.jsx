@@ -38,11 +38,11 @@ export default function NavBar() {
   const { data, isLoading, isError, error } = useGetVerifyQuery();
 
   const { data: profile, isLoading: isLoadingProfile } = useGetProfileQuery();
-/* 
-  if (!isLoadingProfile) {
-    const { apellidos, nombres, id } = profile?.data;
-     dispatch(update({ apellidos, nombres, id })); 
-  } */
+  /* 
+    if (!isLoadingProfile) {
+      const { apellidos, nombres, id } = profile?.data;
+       dispatch(update({ apellidos, nombres, id })); 
+    } */
 
   const [postLogout] = usePostLogoutMutation();
   /* if (!isLoading) console.log(data); */
@@ -62,34 +62,35 @@ export default function NavBar() {
     >
       <NavbarContent className="sm:hidden flex-grow-0" justify="start">
         <NavbarMenuToggle
+
           className="justify-center"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         />
       </NavbarContent>
 
       <NavbarBrand>
-        <AcmeLogo />
-        <p className="font-bold text-inherit">Bravazo</p>
+        <AcmeLogo onClick={() => router.push('/')} />
+        <p className="font-bold text-inherit hover:cursor-pointer" onClick={() => router.push('/')}>Bravazo</p>
       </NavbarBrand>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
-          <Link color="foreground" href="#Inicio">
+          <Link color="foreground" href="/#Inicio">
             Inicio
           </Link>
         </NavbarItem>
         <NavbarItem isActive className="border-b-2 border-blue-">
-          <Link color="foreground" href="#Sobre-nosotros">
+          <Link color="foreground" href="/#Sobre-nosotros">
             Sobre nosotros
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#Experiencias">
+          <Link color="foreground" href="/#Experiencias">
             Experiencias
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#Acerca-de">
+          <Link color="foreground" href="/#Acerca-de">
             Acerca de
           </Link>
         </NavbarItem>
@@ -121,8 +122,8 @@ export default function NavBar() {
                 index === 2
                   ? "warning"
                   : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
+                    ? "danger"
+                    : "foreground"
               }
               href="#"
               size="lg"
@@ -143,7 +144,7 @@ export default function NavBar() {
               color="default"
               name={profile?.data?.nombres}
               size="sm"
-              /* src="user.svg" */
+            /* src="user.svg" */
             />
           </DropdownTrigger>
 

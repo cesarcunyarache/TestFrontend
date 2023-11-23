@@ -34,9 +34,15 @@ const generarHoras = (fecha) => {
     const horasDelDia = Math.floor(tiempo / 60);
     const minutos = tiempo % 60;
 
-    const formato12Horas = `${horasDelDia % 12 || 12}:${minutos
+    {/*const formato12Horas = `${horasDelDia % 12 || 12}:${minutos
       .toString()
-      .padStart(2, "0")}`;
+    .padStart(2, "0")}`;*/}
+
+
+    const formato12Horas = `${(horasDelDia % 12 || 12).toString().padStart(2, "0")}:${minutos.toString().padStart(2, "0")}`;
+
+
+
     const horaGenerada = horasDelDia * 60 + minutos;
 
     const periodo = horasDelDia < 12 ? "AM" : "PM";
@@ -93,8 +99,8 @@ export default function SteppOne({ className = "" }) {
     /* setValue("hora", '') */
     if (load) {
       console.log(watch("hora"));
-     /*  setValue("hora", horas[0].key.toString());
-      setLoad(false); */
+      /*  setValue("hora", horas[0].key.toString());
+       setLoad(false); */
     } else {
       console.log("hola 2");
     }
@@ -178,7 +184,7 @@ export default function SteppOne({ className = "" }) {
           isInvalid={errors.fecha ? true : false}
           errorMessage={errors.fecha && errors.fecha.message}
           isRequired
-      
+
         />
 
         <Select
@@ -200,7 +206,7 @@ export default function SteppOne({ className = "" }) {
           color={errors.hora && "danger"}
           isInvalid={errors.hora ? true : false}
           errorMessage={errors.hora && errors.hora.message}
-         
+
           isRequired
         />
 

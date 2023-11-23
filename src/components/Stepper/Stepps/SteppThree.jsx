@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styles from "./Reservation_Final.css";
 import Collaborators from "../../Collaborators";
-import {toast} from 'sonner'
+import { toast } from 'sonner'
 import Button from "../../Form/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useSteppsState } from "../../../context/SteppsContext";
 import { usePostCreateReservaMutation } from "../../../redux/services/reservaApi";
-import {useRouter} from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { update, reset } from "../../../redux/features/reservaSlice";
 
 export default function SteppThree({ className = "" }) {
@@ -22,12 +22,12 @@ export default function SteppThree({ className = "" }) {
   const reserva = useSelector((state) => state.reserva);
   const dispatch = useDispatch();
   const router = useRouter();
-  const {id} = reserva?.reservaState?.value;
+  const { id } = reserva?.reservaState?.value;
   const [postCreateReserva, { isLoading }] = usePostCreateReservaMutation();
   const onSubmit = handleSubmit(async () => {
     try {
-      console.log({ ...reserva?.reservaState?.value, idCliente: id})
-      const response = await postCreateReserva({ ...reserva?.reservaState?.value, idCliente: 1});
+      console.log({ ...reserva?.reservaState?.value, idCliente: id })
+      const response = await postCreateReserva({ ...reserva?.reservaState?.value, idCliente: 1 });
       if (response.error) console.log(response);
       if (response.data) {
         toast.success(response.data.message)
@@ -58,7 +58,7 @@ export default function SteppThree({ className = "" }) {
             <div className="ladoDerecho p-8 font-bold">
               <p>Nombre de mesero</p>
               <p className="pb-4 pt-2">Disponibilidad</p>
-              <button className="text-[14px] m-auto text-center text-white font-semibold bg-red-600 rounded h-auto w-[100px] p-2 hover:bg-red-700">
+              <button type="button" className="text-[14px] m-auto text-center text-white font-semibold bg-red-600 rounded h-auto w-[100px] p-2 hover:bg-red-700">
                 Elegir
               </button>
             </div>
