@@ -9,6 +9,16 @@ export const reservaApi = createApi({
   }),
   tagTypes: ["Reservas"],
   endpoints: (builder) => ({
+
+    postMeseroForReserva: builder.mutation({
+      query: (data) => ({
+        url: "mesero/reserva",
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }),
+    }),
+
     postReservaMesas: builder.mutation({
       query: (data) => ({
         url: "reserva/mesas",
@@ -33,4 +43,5 @@ export const reservaApi = createApi({
 export const {
   usePostReservaMesasMutation,
   usePostCreateReservaMutation,
+  usePostMeseroForReservaMutation,
 } = reservaApi;

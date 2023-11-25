@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import styles from "./Reservation_Head.css";
+
 import Input from "../../Form/Input";
 
 import { SelectItem } from "@nextui-org/react";
@@ -11,7 +11,7 @@ import Button from "../../Form/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { update } from "../../../redux/features/reservaSlice";
 import Select from "../../Form/Select";
-
+import { toast } from "sonner";
 import { useSteppsState } from "../../../context/SteppsContext";
 
 const generarHoras = (fecha) => {
@@ -34,14 +34,15 @@ const generarHoras = (fecha) => {
     const horasDelDia = Math.floor(tiempo / 60);
     const minutos = tiempo % 60;
 
-    {/*const formato12Horas = `${horasDelDia % 12 || 12}:${minutos
+    {
+      /*const formato12Horas = `${horasDelDia % 12 || 12}:${minutos
       .toString()
-    .padStart(2, "0")}`;*/}
+    .padStart(2, "0")}`;*/
+    }
 
-
-    const formato12Horas = `${(horasDelDia % 12 || 12).toString().padStart(2, "0")}:${minutos.toString().padStart(2, "0")}`;
-
-
+    const formato12Horas = `${(horasDelDia % 12 || 12)
+      .toString()
+      .padStart(2, "0")}:${minutos.toString().padStart(2, "0")}`;
 
     const horaGenerada = horasDelDia * 60 + minutos;
 
@@ -88,7 +89,7 @@ export default function SteppOne({ className = "" }) {
 
   const [load, setLoad] = useState(true);
 
-  const { cantComensales, fecha, hora, nivel, comentario } =
+  const { cantComensales, fecha, hora, nivel, comentario, cantidad } =
     reserva?.reservaState?.value;
   const { onHandleNext, step } = useSteppsState();
 
@@ -106,13 +107,35 @@ export default function SteppOne({ className = "" }) {
     }
   }, [watch("fecha")]);
 
-  const onSubmit = handleSubmit(async (data) => {
-    dispatch(update({ ...data, cantidad: parseInt(watch("cantComensales")) }));
-    console.log(data);
-    /*  console.log(reserva); */
+  useEffect( ()=> {
+    dispatch(
+      update({ mesas: [], cantidad: parseInt(watch("cantComensales")) })
+    );
+  }, [cantComensales])
 
-    onHandleNext();
+  const onSubmit = handleSubmit(async (data) => {
+    const isExists = buscarFecha(watch("hora"));
+    
+    if (isExists) {
+      dispatch(
+        update({ ...data })
+      );
+      console.log(data);
+      onHandleNext();
+    } else {
+      toast.error('Seleccione un hora');
+    }
+    /*  console.log(reserva); */
   });
+
+  const buscarFecha = (horaSeleccionada) => {
+    const foundHora = horas.find((hora) => hora.key === horaSeleccionada);
+    if (foundHora) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   return (
     <form onSubmit={onSubmit} className={`${className}`} noValidate>
@@ -184,7 +207,6 @@ export default function SteppOne({ className = "" }) {
           isInvalid={errors.fecha ? true : false}
           errorMessage={errors.fecha && errors.fecha.message}
           isRequired
-
         />
 
         <Select
@@ -197,7 +219,7 @@ export default function SteppOne({ className = "" }) {
           isDisabled={horas.length === 0}
           options={{
             validate: (value) => {
-              console.log(watch("hora"));
+             
               if (value === "") {
                 return "Este campo es requerido";
               }
@@ -206,7 +228,6 @@ export default function SteppOne({ className = "" }) {
           color={errors.hora && "danger"}
           isInvalid={errors.hora ? true : false}
           errorMessage={errors.hora && errors.hora.message}
-
           isRequired
         />
 

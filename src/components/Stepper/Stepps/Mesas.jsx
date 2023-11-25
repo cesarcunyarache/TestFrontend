@@ -34,7 +34,7 @@ export default function Mesas({ data }) {
       }
     >
       <Button
-        className={`border-2 rounded-[7px]  absolute text-xs cursor-pointer font-sans font-semibold text-center bg-transparent ${
+        className={`border-2 rounded-[7px]  absolute text-xs cursor-pointer font-sans font-semibold text-center bg-transparent min-w-0 min-h-0 ${
           isActive ? "bg-neutral-900 text-gray-50 border-hidden" : ""
         }  ${status(estado)} `}
         variant="bordered"
@@ -43,7 +43,7 @@ export default function Mesas({ data }) {
         isIconOnly
         onClick={() => {
           /* isActive ? setIsActive(false) : setIsActive(true); */
-          if (cantidad >= 0) {
+          if (cantidad > 0) {
             if (isActive) {
               setIsActive(false);
               dispatch(
@@ -74,7 +74,9 @@ export default function Mesas({ data }) {
           }
         }}
         style={{
-          width: "5px",
+     /*      width: "20px",
+          height: "20px",
+          padding: "0px", */
           left: `${pLeft}%`,
           top: `${pTop}%`,
         }}

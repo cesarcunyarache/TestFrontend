@@ -1,13 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import styles from "./Reservation_Body.css";
 import Button from "../../Form/Button";
 import Mesas from "./Mesas";
 import { useDispatch, useSelector } from "react-redux";
 import Load from "../../Load";
 import { Spinner } from "@nextui-org/react";
-import {toast} from 'sonner'
+import { toast } from "sonner";
 
 import { useSteppsState } from "../../../context/SteppsContext";
 import {
@@ -20,10 +19,15 @@ export default function SteppTwo({ className = "" }) {
 
   const reserva = useSelector((state) => state.reserva);
 
-  const { cantComensales, fecha, hora, nivel, mesas } =
+  const { cantComensales, fecha, hora, nivel, mesas, cantidad } =
     reserva?.reservaState?.value;
 
   const [data, setData] = useState([]);
+
+  useEffect(() => {
+
+
+  }, [cantidad])
 
   useEffect(() => {
     const listMesas = async () => {
@@ -33,7 +37,7 @@ export default function SteppTwo({ className = "" }) {
 
         if (fecha && hora && fecha !== "" && hora !== "") {
           const response = await postReservaMesas({ fecha, hora });
-          if (response.error) console.log(response);
+          if (response.error) console.log(response.error);
           if (response.data) {
             setData(response?.data?.data);
           }
@@ -43,7 +47,7 @@ export default function SteppTwo({ className = "" }) {
       }
     };
     listMesas();
-  }, [fecha, hora]);
+  }, [fecha, hora, cantComensales]);
 
   const [selectedNivel, setSelectedNivel] = useState("opcion1");
 
@@ -81,7 +85,7 @@ export default function SteppTwo({ className = "" }) {
         <div className="contenido">
           <h2 className="font-bold text-[18px] pb-2">Terraza Bravazo</h2>
 
-          <div className="flex flex-row text-[14px] font-semibold">
+          <div className="flex flex-row gap-2 text-sm font-semibold w-full py-2 overflow-auto">
             <p className="pr-4">Juan Villegas Flores</p>
             <p className="pr-4">
               Fecha: <span>{fecha}</span>
@@ -93,35 +97,39 @@ export default function SteppTwo({ className = "" }) {
               {cantComensales} <span> Personas</span>
             </p>
           </div>
-          <div className="pt-4 w-[500px]">
-            <div className="border w-[100%]"></div>
+          <div className="pt-4 w-full">
+            <div className="border w-full"></div>
           </div>
         </div>
 
-        <div className="leyenda pt-4">
+        <div className="leyenda pt-4 w-full overflow-auto py-3 text-xs ">
           <ul className="flex flex-row">
-            <li className="pr-4">
+            <li className="pr-4 flex flex-row gap-1">
               {" "}
-              <span className="bg-gray-300 rounded text-gray-300">
+              <span className="bg-gray-300 rounded text-gray-300 w-4 h-4">
                 ....
               </span>{" "}
               Deshabilitado
             </li>
-            <li className="pr-4">
+            <li className="pr-4 flex flex-row gap-1">
               {" "}
-              <span className="bg-gray-500 rounded text-gray-500">
+              <span className="bg-gray-500 rounded text-gray-500 w-4 h-4">
                 ....
               </span>{" "}
               Reservado
             </li>
-            <li className="pr-4">
+            <li className="pr-4 flex flex-row gap-1">
               {" "}
-              <span className="bg-black rounded text-black">....</span>{" "}
+              <span className="bg-black rounded text-black w-4 h-4">
+                ....
+              </span>{" "}
               Disponible
             </li>
-            <li className="pr-4">
+            <li className="pr-4 flex flex-row gap-1">
               {" "}
-              <span className="bg-red-600 rounded text-red-600">....</span>{" "}
+              <span className="bg-red-600 rounded text-red-600 w-4 h-4">
+                ....
+              </span>{" "}
               Seleccionado
             </li>
           </ul>
@@ -151,28 +159,33 @@ export default function SteppTwo({ className = "" }) {
                 src="https://freepass.es/storage/seatschart/November2023/1699428797713.png"
                 alt="Tercer nivel"
               />
-
               <div className="">
                 {!isLoading &&
-                  data.map((mesa) => {
+                  data.map((mesa, index) => {
                     if (mesa.nivel == "Terraza") {
                       return <Mesas data={mesa} />;
                     }
                   })}
               </div>
+              ;
             </div>
           )}
         </div>
       </div>
 
-      <div className="flex justify-between">
+      <div className="flex justify-between gap-2">
         <Button onClick={() => onHandleBack()} className="w-32">
           Anterior
         </Button>
         <Button
           /* type="submit" */ onClick={() => {
             if (mesas?.length > 0) {
-              onHandleNext();
+              if (cantidad <= 0){
+                 onHandleNext();
+              } else {
+                toast.error("Seleccione la cantidad mesas según el número de comensales");
+              }
+              
             } else {
               toast.error("Seleccione almenos una mesa");
             }
