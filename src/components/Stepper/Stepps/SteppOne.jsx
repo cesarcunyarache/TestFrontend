@@ -111,7 +111,7 @@ export default function SteppOne({ className = "" }) {
     dispatch(
       update({ mesas: [], cantidad: parseInt(watch("cantComensales")) })
     );
-  }, [cantComensales])
+  }, [cantComensales, nivel ])
 
   const onSubmit = handleSubmit(async (data) => {
     const isExists = buscarFecha(watch("hora"));

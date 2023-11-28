@@ -12,7 +12,15 @@ export async function middleware(request) {
       jwt.value,
       new TextEncoder().encode("83837849399292/**//")
     );
-    return NextResponse.next();
+
+    if (payload.data.idCliente) {
+      return NextResponse.next();
+    } else {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+
+  
+    
   } catch (error) {
     return NextResponse.redirect(new URL("/login", request.url));
   }

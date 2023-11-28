@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import Tabs from "./Tabs";
 import {
   Navbar,
@@ -37,15 +37,23 @@ export default function NavBar() {
 
   const { data, isLoading, isError, error } = useGetVerifyQuery();
 
-  const { data: profile, isLoading: isLoadingProfile } = useGetProfileQuery();
-  /* 
-    if (!isLoadingProfile) {
-      const { apellidos, nombres, id } = profile?.data;
-       dispatch(update({ apellidos, nombres, id })); 
-    } */
 
+
+
+  const { data: profile, isLoading: isLoadingProfile } = useGetProfileQuery();
+
+
+
+  useEffect(() => {
+    if (!isLoadingProfile) {
+      if (profile) {
+        const { apellidos, nombres, id } = profile?.data;
+        console.log(profile);
+        dispatch(update({ apellidos, nombres, id }));
+      }
+    }
+  }, [isLoadingProfile]);
   const [postLogout] = usePostLogoutMutation();
-  /* if (!isLoading) console.log(data); */
 
   const handeLogout = async () => {
     const response = await postLogout();
@@ -62,15 +70,19 @@ export default function NavBar() {
     >
       <NavbarContent className="sm:hidden flex-grow-0" justify="start">
         <NavbarMenuToggle
-
           className="justify-center"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         />
       </NavbarContent>
 
       <NavbarBrand>
-        <AcmeLogo onClick={() => router.push('/')} />
-        <p className="font-bold text-inherit hover:cursor-pointer" onClick={() => router.push('/')}>Bravazo</p>
+        <AcmeLogo onClick={() => router.push("/")} />
+        <p
+          className="font-bold text-inherit hover:cursor-pointer"
+          onClick={() => router.push("/")}
+        >
+          Bravazo
+        </p>
       </NavbarBrand>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
@@ -94,23 +106,6 @@ export default function NavBar() {
             Acerca de
           </Link>
         </NavbarItem>
-        {/* <NavbarItem>
-          <Link color="foreground" href="#">
-            Inicio
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page"
-          className="" background>
-            Acerca de
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Nosotros
-          </Link>
-        </NavbarItem> */}
-        {/*    <Tabs></Tabs> */}
       </NavbarContent>
 
       <NavbarMenu>
@@ -122,8 +117,8 @@ export default function NavBar() {
                 index === 2
                   ? "warning"
                   : index === menuItems.length - 1
-                    ? "danger"
-                    : "foreground"
+                  ? "danger"
+                  : "foreground"
               }
               href="#"
               size="lg"
@@ -144,11 +139,11 @@ export default function NavBar() {
               color="default"
               name={profile?.data?.nombres}
               size="sm"
-            /* src="user.svg" */
+              /* src="user.svg" */
             />
           </DropdownTrigger>
 
-          {!isLoading && data?.status === "ok" ? (
+          {!isLoading && profile !== undefined && data?.status === "ok" ? (
             <DropdownMenu
               aria-label="Profile"
               variant="flat"

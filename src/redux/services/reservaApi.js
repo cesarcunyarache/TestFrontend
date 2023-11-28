@@ -7,7 +7,7 @@ export const reservaApi = createApi({
     baseUrl: process.env.NEXT_PUBLIC_API,
     credentials: "include",
   }),
-  tagTypes: ["Reservas"],
+  tagTypes: ["Reservas", "meserosReservas"],
   endpoints: (builder) => ({
 
     postMeseroForReserva: builder.mutation({
@@ -17,6 +17,7 @@ export const reservaApi = createApi({
         body: data,
         credentials: "include",
       }),
+      providesTags: ["meserosReservas"],
     }),
 
     postReservaMesas: builder.mutation({
@@ -26,6 +27,8 @@ export const reservaApi = createApi({
         body: data,
         credentials: "include",
       }),
+
+
     }),
 
     postCreateReserva: builder.mutation({
@@ -35,6 +38,7 @@ export const reservaApi = createApi({
         body: data,
         credentials: "include",
       }),
+      invalidatesTags: ["meserosReservas"],
     }),
 
   }),
