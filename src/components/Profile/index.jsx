@@ -8,22 +8,29 @@ import { usePutUpdateMutation } from "../../redux/services/userApi";
 const validateDocument = {
   1: {
     length: 8,
+    minLength: 8,
+    lengthMessage: "Este campo debe tener 8 caracteres",
     pattern: /^[0-9]*$/,
     message: "Este campo debe contener solo números",
   },
   2: {
     length: 12,
+    minLength: 0,
+    lengthMessage: "Este campo debe tener maximo 12 caracteres",
     pattern: /^[A-Za-z0-9]*$/,
     message: "Este campo debe contener solo caracteres alfanuméricos",
   },
   3: {
     length: 12,
+    lengthMessage: "Este campo debe tener maximo 12 caracteres",
     pattern: /^[A-Za-z0-9]*$/,
     message: "Este campo debe contener solo caracteres alfanuméricos",
   },
   4: {
     length: 11,
+    minLength: 11,
     pattern: /^[0-9]*$/,
+    lengthMessage: "Este campo debe tener 11 caracteres",
     message: "Este campo debe contener solo números",
   },
 };
@@ -61,9 +68,9 @@ export default function Profile(data = {}) {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      console.log(data); 
+      console.log(data);
       const response = await putUpdate(data);
-      if (response.error)  toast.error(response.error.data.message);
+      if (response.error) toast.error(response.error.data.message);
       if (response.data) toast.success(response.data.message);
     } catch (error) {
       console.error(error);
@@ -89,7 +96,9 @@ export default function Profile(data = {}) {
               className="py-2"
               radius="sm"
               size="md"
-              {...(idTipoDoc ? { defaultSelectedKeys: [idTipoDoc.toString()] } : {})}
+              {...(idTipoDoc
+                ? { defaultSelectedKeys: [idTipoDoc.toString()] }
+                : {})}
               color={errors.idTipoDoc && "danger"}
               isInvalid={errors.idTipoDoc ? true : false}
               errorMessage={errors.idTipoDoc && errors.idTipoDoc.message}
@@ -134,10 +143,19 @@ export default function Profile(data = {}) {
                   value: validateDocument[watch("idTipoDoc")]?.pattern,
                   message: validateDocument[watch("idTipoDoc")]?.message,
                 },
+                maxLength: {
+                  value: validateDocument[watch("idTipoDoc")]?.length,
+                  message: validateDocument[watch("idTipoDoc")]?.lengthMessage,
+                },
+                minLength: {
+                  value: validateDocument[watch("idTipoDoc")]?.minLength,
+                  message: validateDocument[watch("idTipoDoc")]?.lengthMessage,
+                },
               }}
               color={errors.numeroDoc && "danger"}
               isInvalid={errors.numeroDoc ? true : false}
               errorMessage={errors.numeroDoc && errors.numeroDoc.message}
+
             />
           </div>
         </div>
