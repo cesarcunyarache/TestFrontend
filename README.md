@@ -52,5 +52,14 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 <img width="1440" alt="Captura de pantalla 2023-11-08 a la(s) 14 10 34" src="https://github.com/cesarcunyarache/TestFrontend/assets/102435094/f8d7ddae-765a-455b-8583-cfcaa8acae03">
 
+<img width="1440" alt="Captura de pantalla 2023-11-30 a la(s) 11 42 02" src="https://github.com/cesarcunyarache/TestFrontend/assets/102435094/9b1493ad-e6a5-4c17-b8ce-492b2494b937">
+
+<img width="1440" alt="Captura de pantalla 2023-11-30 a la(s) 11 42 22" src="https://github.com/cesarcunyarache/TestFrontend/assets/102435094/a86887b2-4174-42bb-b0d5-6c3a44ce30a1">
+
+<img width="1440" alt="Captura de pantalla 2023-11-30 a la(s) 11 42 52" src="https://github.com/cesarcunyarache/TestFrontend/assets/102435094/9071c512-58bc-46c6-8239-dc26973a9671">
+
+<img width="1440" alt="Captura de pantalla 2023-11-30 a la(s) 11 43 08" src="https://github.com/cesarcunyarache/TestFrontend/assets/102435094/064e5f37-9b99-4644-b890-7a302942f646">
+
+<img width="355" alt="Captura de pantalla 2023-11-30 a la(s) 11 43 52" src="https://github.com/cesarcunyarache/TestFrontend/assets/102435094/16ef5d0f-433f-45c6-aed9-0d89d70e57f5">
 
 
