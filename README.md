@@ -35,9 +35,22 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-DEMO
-![Uploading Captura de pantalla 2023-11-08 a la(s) 14.00.20.png…]()
+## Demo
+<img width="1440" alt="Captura de pantalla 2023-11-08 a la(s) 14 00 20" src="https://github.com/cesarcunyarache/TestFrontend/assets/102435094/ae132ef9-bfc3-419d-8980-d44f38bf693d">
 
+<img width="1440" alt="Captura de pantalla 2023-11-08 a la(s) 14 03 50" src="https://github.com/cesarcunyarache/TestFrontend/assets/102435094/05ebc90b-8629-4452-bd53-f92643d55569">
+
+<img width="1440" alt="Captura de pantalla 2023-11-08 a la(s) 14 05 00" src="https://github.com/cesarcunyarache/TestFrontend/assets/102435094/a93fa02a-ff3f-4dd9-8cdd-7d667281f0f3">
+
+<img width="1440" alt="Captura de pantalla 2023-11-08 a la(s) 14 05 44" src="https://github.com/cesarcunyarache/TestFrontend/assets/102435094/5eefd498-2cfd-42ad-9a07-db2d6f223805">
+
+<img width="1440" alt="Captura de pantalla 2023-11-08 a la(s) 14 07 10" src="https://github.com/cesarcunyarache/TestFrontend/assets/102435094/5b1469ba-48b5-49ef-ac4e-6884834c7591">
+
+<img width="1440" alt="Captura de pantalla 2023-11-08 a la(s) 14 08 32" src="https://github.com/cesarcunyarache/TestFrontend/assets/102435094/1444360b-4a89-4bec-a8eb-e087edd95f47">
+
+<img width="1440" alt="Captura de pantalla 2023-11-08 a la(s) 14 09 44" src="https://github.com/cesarcunyarache/TestFrontend/assets/102435094/531eaf06-4a66-4d0a-bc33-accbf043d993">
+
+<img width="1440" alt="Captura de pantalla 2023-11-08 a la(s) 14 10 34" src="https://github.com/cesarcunyarache/TestFrontend/assets/102435094/f8d7ddae-765a-455b-8583-cfcaa8acae03">
 
 
 
