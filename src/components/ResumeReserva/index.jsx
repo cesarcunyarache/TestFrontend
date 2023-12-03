@@ -24,10 +24,10 @@ export default function index({ payload = "" }) {
   const reserva = useSelector((state) => state.reserva);
   const { nombres, apellidos, fecha, hora, cantComensales, mesas, qr } =
     reserva?.reservaState?.value;
- /*  const [qr, setQr,] = useState(payload); */
+  /*  const [qr, setQr,] = useState(payload); */
 
 
- 
+
   return (
     <div className="p-8 ">
       <div className="p-2 w-36 mx-auto">
@@ -150,7 +150,7 @@ export default function index({ payload = "" }) {
             </li>
 
             <li>
-              Fecha: <span className="font-bold">{formatearFecha(fecha)}</span>{" "}
+              Fecha: <span className="font-bold">{(fecha)}</span>{" "}
             </li>
 
             <li>

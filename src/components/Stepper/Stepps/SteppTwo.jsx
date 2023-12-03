@@ -9,18 +9,21 @@ import { Spinner } from "@nextui-org/react";
 import { toast } from "sonner";
 
 import { useSteppsState } from "../../../context/SteppsContext";
-import {
-  usePostReservaMesasMutation,
-  useGetProfileQuery,
-} from "../../../redux/services/reservaApi";
+import { usePostReservaMesasMutation } from "../../../redux/services/reservaApi";
+
+import { useGetProfileQuery } from "../../../redux/services/userApi";
 
 export default function SteppTwo({ className = "" }) {
   const [postReservaMesas, { isLoading }] = usePostReservaMesasMutation();
+
+  const { data: user } = useGetProfileQuery();
 
   const reserva = useSelector((state) => state.reserva);
 
   const { cantComensales, fecha, hora, nivel, mesas, cantidad } =
     reserva?.reservaState?.value;
+
+  console.log("DATA DE LA RESERVAAA: ", user?.data);
 
   const [data, setData] = useState([]);
 
@@ -86,7 +89,7 @@ export default function SteppTwo({ className = "" }) {
           <h2 className="font-bold text-[18px] pb-2">Terraza Bravazo</h2>
 
           <div className="flex flex-row gap-2 text-sm font-semibold w-full py-2 overflow-auto">
-            <p className="pr-4">Juan Villegas Flores</p>
+            <p className="pr-4">{user?.data?.nombres}</p>
             <p className="pr-4">
               Fecha: <span>{fecha}</span>
             </p>
@@ -167,7 +170,6 @@ export default function SteppTwo({ className = "" }) {
                     }
                   })}
               </div>
-              ;
             </div>
           )}
         </div>
@@ -180,12 +182,12 @@ export default function SteppTwo({ className = "" }) {
         <Button
           /* type="submit" */ onClick={() => {
             if (mesas?.length > 0) {
-              if (cantidad <= 0){
-                 onHandleNext();
+              if (cantidad <= 0) {
+                onHandleNext();
               } else {
                 toast.error("Seleccione la cantidad mesas según el número de comensales");
               }
-              
+
             } else {
               toast.error("Seleccione almenos una mesa");
             }

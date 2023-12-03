@@ -8,8 +8,9 @@ import Event_Content from '../Events_Content'
 import Experiences from '../Experiences';
 import Collaborators from '../Collaborators'
 import More_Information from '../More_Information';
-import Head_Opinion from '../Head_Opinion';
+
 import Link from '../Link';
+import Footer from '../Footer';
 
 export default function Main() {
 
@@ -20,9 +21,18 @@ export default function Main() {
             {/*Inicio de la cabecera*/}
             <div className="cabecera">
                 <Title />
-                <div className="reserva pt-4 pb-8">
-                    <div className="mx-auto text-center">
-                        <Link className="button_reserva text-[18px] font-bold bg-red-600 w-auto h-auto px-4 py-2 rounded-[5px] animate-bounce hover:bg-red-700 cursor-pointer text-white font-sans hover:no-underline hover:text-white" redirect="/reservar" >RESERVA AHORA</Link>
+                <div className="reserva pt-8 pb-8 animate-bounce">
+                    <div className="flex flex-row justify-center gap-6">
+                        <div>
+                            <Link className="text-[18px] font-bold bg-red-600 w-auto h-auto px-4 py-2 rounded-[5px] hover:bg-red-700 cursor-pointer text-white font-sans hover:no-underline hover:text-white" redirect="/reservar" >
+                                RESERVA AHORA
+                            </Link>
+                        </div>
+                        <div className="pt-2">
+                            <a className="text-[18px] font-bold bg-red-600 w-auto h-auto px-4 py-2 rounded-[5px] hover:bg-red-700 cursor-pointer text-white font-sans hover:no-underline hover:text-white" href="https://drive.google.com/file/d/16zChcNJ28L1s9e-0k2xhpT1jllqipooC/view" target="_blank">
+                                VISUALIZA NUESTRA CARTA
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -58,7 +68,7 @@ export default function Main() {
                                     Visualiza nuestra carta
                                 </p>
                                 <div className="pt-2">
-                                    <a className="border border-[#d8d9db] rounded p-2 text-[14px] text-red-600 font-semibold hover:text-white hover:bg-red-600" href="https://drive.google.com/file/d/16zChcNJ28L1s9e-0k2xhpT1jllqipooC/view" download="MenuTerrazaBravazo.pdf">
+                                    <a className="border border-[#d8d9db] rounded p-2 text-[14px] text-red-600 font-semibold hover:text-white hover:bg-red-600" href="https://drive.google.com/file/d/16zChcNJ28L1s9e-0k2xhpT1jllqipooC/view" target="_blank">
                                         Carta Terraza Bravazo 2023
                                     </a>
                                 </div>
@@ -68,12 +78,12 @@ export default function Main() {
                     {/*El DIV de arriba finaliza la seccion de contenido lateral*/}
                 </div>
                 {/*Aqui comienza el apartado de EVENTOS / EXPERIENCIAS*/}
-                <div id="Experiencias" className="entretenimiento_colaboradores flex flex-row">
+                <div className="entretenimiento_colaboradores flex flex-row">
                     <div className="eventos_experiencias pr-20">
                         <div className="contenido_evento">
                             <Event_Content />
                         </div>
-                        <div className="contenido_experiencias">
+                        <div id="Experiencias" className="contenido_experiencias">
                             <Experiences />
                         </div>
                     </div>
@@ -92,10 +102,9 @@ export default function Main() {
                         </div>
                     </div>
                 </div>
-                <div className="opiniones w-[60%]">
-                    <Head_Opinion />
-                </div>
-
+            </div>
+            <div className="footer">
+                <Footer />
             </div>
         </div>
     )

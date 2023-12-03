@@ -71,6 +71,15 @@ export const userApi = createApi({
       }),
     }),
 
+    postContactForm: builder.mutation({
+      query: (data) => ({
+        url: "clienteAuth/contactForm",
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }),
+    }),
+
     putResetPassword: builder.mutation({
       query: (data) => ({
         url: "clienteAuth/resetPassword",
@@ -135,6 +144,7 @@ export const {
   usePostSendOTPMutation,
   usePostResendOTPMutation,
   usePostForgetPasswordMutation,
+  usePostContactFormMutation,
   usePutResetPasswordMutation,
   usePostLogoutMutation,
   usePutUpdateEmailMutation,

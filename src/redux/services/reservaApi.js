@@ -41,11 +41,38 @@ export const reservaApi = createApi({
       invalidatesTags: ["meserosReservas"],
     }),
 
+    getReservaByIdUser: builder.query({
+      query: (id) => ({ url: `reserva/${id}` }),
+      providesTags: (result, error, id) => [{ type: "getReadByIdUser", id }],
+    }),
+
+    getPuntosByIdUser: builder.query({
+      query: (id) => ({ url: `reserva/puntos/${id}` }),
+      providesTags: (result, error, id) => [{ type: "getPuntosByIdUser", id }],
+    }),
+
+    putUpdateReserva: builder.mutation({
+      query: (data) => ({
+        url: "reserva/update",
+        method: "PUT",
+        body: data,
+        credentials: "include",
+      }),
+      invalidatesTags: ["getReadByIdUser"],
+    }),
+
   }),
+
+  tagTypes: ['getReadByIdUser'],
+  tagTypes: ['getPuntosByIdUser'],
+
 });
 
 export const {
   usePostReservaMesasMutation,
   usePostCreateReservaMutation,
   usePostMeseroForReservaMutation,
+  useGetReservaByIdUserQuery,
+  useGetPuntosByIdUserQuery,
+  usePutUpdateReservaMutation,
 } = reservaApi;

@@ -12,8 +12,8 @@ export default function Information_Order() {
 					Contacto
 				</p>
 			</div>
-			<a className="border p-2 rounded border-[#d8d9db] text-[14px] font-semibold text-red-600 hover:text-white hover:bg-red-600" href="tel:+51976569677">
-				+51 976 569 677
+			<a className="border p-2 rounded border-[#d8d9db] text-[14px] font-semibold text-red-600 hover:text-white hover:bg-red-600" href="tel:+51922081274">
+				+51 922 081 274
 			</a>
 
 			<div className="pt-4 pb-2">
@@ -23,11 +23,11 @@ export default function Information_Order() {
 			</div>
 			<p>
 				<span className="pr-2">
-					<a className="border p-2 rounded border-[#d8d9db] text-[14px] text-[#06c167] font-semibold hover:text-white hover:bg-[#06c167]" href="https://yeva.pe/shop/terrazabravazo">
+					<a className="border p-2 rounded border-[#d8d9db] text-[14px] text-[#06c167] font-semibold hover:text-white hover:bg-[#06c167]" href="https://yeva.pe/shop/terrazabravazo" target="_blank">
 						Yeva.pe
 					</a>
 				</span>
-				<a className="border p-2 rounded border-[#d8d9db] text-[14px] text-[#06c167] font-semibold hover:text-white hover:bg-[#06c167]" href="https://wa.me/976569677?text=Hola,%20deseo%20ordenar%20un%20pedido%20a%20domicilio.">
+				<a className="border p-2 rounded border-[#d8d9db] text-[14px] text-[#06c167] font-semibold hover:text-white hover:bg-[#06c167]" href="https://wa.me/922081274?text=Hola,%20deseo%20ordenar%20un%20pedido%20a%20domicilio." target="_blank">
 					Whatsapp
 				</a>
 			</p>

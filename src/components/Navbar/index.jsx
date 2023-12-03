@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
+import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import Tabs from "./Tabs";
 import {
   Navbar,
@@ -28,6 +29,7 @@ import {
   usePostLogoutMutation,
   useGetProfileQuery,
 } from "../../redux/services/userApi";
+import Load from "../../components/Load";
 
 export default function NavBar() {
   const router = useRouter();
@@ -62,6 +64,20 @@ export default function NavBar() {
   };
 
   const menuItems = ["Inicio", "Sobre nosotros", "Experiencias", "Acerca de"];
+
+  // ...
+  const [selectedNavItem, setSelectedNavItem] = React.useState(menuItems[0]);
+
+  const handleNavItemSelect = (item) => {
+    if (isLoading) {
+      <Load />
+    }
+    router.push("/")
+    setSelectedNavItem(item);
+  };
+
+
+
   return (
     <Navbar
       className="border-b-1"
@@ -76,36 +92,86 @@ export default function NavBar() {
       </NavbarContent>
 
       <NavbarBrand>
-        <AcmeLogo onClick={() => router.push("/")} />
-        <p
-          className="font-bold text-inherit hover:cursor-pointer"
-          onClick={() => router.push("/")}
+        <ScrollLink
+          to="/Inicio"
+          smooth={true}
+          duration={500}
+          offset={-100}
+          className={`hover:cursor-pointer ${selectedNavItem === "Inicio" ? "" : ""}`}
+          onClick={() => handleNavItemSelect("Inicio")}
         >
-          Bravazo
-        </p>
+          <div className="flex flex-row items-center">
+            <div
+              className="hover:cursor-pointer"
+              onClick={() => router.push("/")}
+            >
+              <AcmeLogo />
+            </div>
+            <div>
+              <p
+                className="font-bold text-inherit hover:cursor-pointer my-auto"
+                onClick={() => router.push("/")}
+              >
+                Bravazo
+              </p>
+            </div>
+          </div>
+        </ScrollLink>
       </NavbarBrand>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="/#Inicio">
+        <NavbarItem isActive={selectedNavItem === "Inicio"}>
+          <ScrollLink
+            to="Inicio"
+            smooth={true}
+            duration={500}
+            offset={-100}
+            className={`hover:cursor-pointer ${selectedNavItem === "Inicio" ? "border-b-2 border-red-600" : ""}`}
+            onClick={() => handleNavItemSelect("Inicio")}
+          >
             Inicio
-          </Link>
+          </ScrollLink>
         </NavbarItem>
-        <NavbarItem isActive className="border-b-2 border-blue-">
-          <Link color="foreground" href="/#Sobre-nosotros">
+
+        <NavbarItem isActive={selectedNavItem === "Sobre-nosotros"}>
+          <ScrollLink
+            to="Sobre-nosotros"
+            smooth={true}
+            duration={500}
+            offset={-70} // Ajusta este valor según sea necesario
+            className={`hover:cursor-pointer ${selectedNavItem === "Sobre-nosotros" ? "border-b-2 border-red-600" : ""}`}
+            onClick={() => handleNavItemSelect("Sobre-nosotros")}
+          >
             Sobre nosotros
-          </Link>
+          </ScrollLink>
         </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/#Experiencias">
+
+        <NavbarItem isActive={selectedNavItem === "Experiencias"}>
+          <ScrollLink
+            to="Experiencias"
+            smooth={true}
+            duration={500}
+            offset={-60}
+            className={`hover:cursor-pointer ${selectedNavItem === "Experiencias" ? "border-b-2 border-red-600" : ""}`}
+            onClick={() => handleNavItemSelect("Experiencias")}
+          >
             Experiencias
-          </Link>
+          </ScrollLink>
         </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/#Acerca-de">
+
+        <NavbarItem isActive={selectedNavItem === "Acerca-de"}>
+          <ScrollLink
+            to="Acerca-de"
+            smooth={true}
+            duration={500}
+            offset={-70}
+            className={`hover:cursor-pointer ${selectedNavItem === "Acerca-de" ? "border-b-2 border-red-600" : ""}`}
+            onClick={() => handleNavItemSelect("Acerca-de")}
+          >
             Acerca de
-          </Link>
+          </ScrollLink>
         </NavbarItem>
+
       </NavbarContent>
 
       <NavbarMenu>
@@ -117,8 +183,8 @@ export default function NavBar() {
                 index === 2
                   ? "warning"
                   : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
+                    ? "danger"
+                    : "foreground"
               }
               href="#"
               size="lg"
@@ -139,7 +205,7 @@ export default function NavBar() {
               color="default"
               name={profile?.data?.nombres}
               size="sm"
-              /* src="user.svg" */
+            /* src="user.svg" */
             />
           </DropdownTrigger>
 
@@ -155,9 +221,9 @@ export default function NavBar() {
               </DropdownItem>
               <DropdownItem key="/datos-personales">Mis datos</DropdownItem>
               <DropdownItem key="/reservar">Reservar</DropdownItem>
-              <DropdownItem key="analytics">Puntos</DropdownItem>
-              <DropdownItem key="configurations">Configuracion</DropdownItem>
-              <DropdownItem key="system">Contactanos</DropdownItem>
+              <DropdownItem key="/puntos">Puntos</DropdownItem>
+              <DropdownItem key="system">Configuracion</DropdownItem>
+              {/*<DropdownItem key="/contactanos">Contactanos</DropdownItem>*/}
               <DropdownItem key="help_and_feedback">
                 {" "}
                 Ayuda y comentarios
