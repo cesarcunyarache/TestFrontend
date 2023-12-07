@@ -222,19 +222,13 @@ export default function NavBar() {
               <DropdownItem key="/datos-personales">Mis datos</DropdownItem>
               <DropdownItem key="/reservar">Reservar</DropdownItem>
               <DropdownItem key="/puntos">Puntos</DropdownItem>
-              <DropdownItem key="system">Configuracion</DropdownItem>
-              {/*<DropdownItem key="/contactanos">Contactanos</DropdownItem>*/}
-              <DropdownItem key="help_and_feedback">
-                {" "}
-                Ayuda y comentarios
-              </DropdownItem>
               <DropdownItem
                 key="#"
                 textValue="Logout"
                 onClick={handeLogout}
                 color="danger"
               >
-                Log Out
+                Cerrar Sesión
               </DropdownItem>
             </DropdownMenu>
           ) : (

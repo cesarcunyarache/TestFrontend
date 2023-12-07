@@ -10,8 +10,7 @@ export default function Head_Information() {
             </h2>
 
             <div className="complemento text-[14px] pt-4">
-                <p className="pb-2 icon icon-reloj"> 11:00 am - 2:00 am</p>
-                <p className="pb-4 icon icon-reseas"> Sin reseñas</p>
+                <p className="pb-2 icon icon-reloj"> Horario de atención: 11:00 am - 2:00 am</p>
                 <p className="mensaje text-[16px] w-80%">
                     Creemos con firmeza que todos merecemos vivir experiencias agradables y únicas, es por ello que nuestro compromiso con cada uno de ustedes lo expresamos con nuestra comida. La dedicación y el esfuerzo se recompensa con sonrisas satisfactorias.
                 </p>

@@ -132,6 +132,15 @@ export const userApi = createApi({
       }),
     }),
 
+    postContact: builder.mutation({
+      query: (data) => ({
+        url: "/clienteAuth/contact",
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }),
+    }),
+
   }),
 });
 
@@ -150,6 +159,6 @@ export const {
   usePutUpdateEmailMutation,
   usePostSendOTPUpdateEmailMutation,
   usePutUpdatePasswordMutation,
-
-  usePostReservaMesasMutation
+  usePostContactMutation,
+  usePostReservaMesasMutation,
 } = userApi;

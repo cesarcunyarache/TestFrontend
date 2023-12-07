@@ -85,11 +85,11 @@ export default function SteppThree({ className = "" }) {
 
   const [postMeseroReserva, { data, isLoading: isLoadingMeseros }] =
     usePostMeseroForReservaMutation();
-  console.log(idMesero, isSelected);
+
 
   const onSubmit = handleSubmit(async () => {
     try {
-      console.log(idMesero, isSelected);
+
 
       if (isSelected) {
         if (idMesero === null || idMesero === undefined || idMesero === "") {
@@ -98,7 +98,7 @@ export default function SteppThree({ className = "" }) {
         }
       }
 
-      
+
       handleOpen();
       /* console.log({ ...reserva?.reservaState?.value });
       const response = await postCreateReserva({
@@ -118,6 +118,7 @@ export default function SteppThree({ className = "" }) {
   });
 
   const [meseros, setMeseros] = useState([]);
+  console.log(meseros)
 
   useEffect(() => {
     const listaMeseros = async () => {
@@ -171,7 +172,7 @@ export default function SteppThree({ className = "" }) {
           update({ qr: response.data.message })
         );
         router.push("/");
-      
+
         onHandleNext();
         setQr(response.data.message);
       }
@@ -222,37 +223,43 @@ export default function SteppThree({ className = "" }) {
         <div className="border rounded-lg bg-white p-6">
           <div className="elegirMesero pt-4">
             <h2 className="text-[18px] font-bold pb-2 pl-8 pr-4 m-auto text-center">
-              "En nuestro restaurante, te damos el control. Elije a tu mesero o
-              mesera favorito/a y disfruta de un servicio a medida."
+              {"En nuestro restaurante, te damos el control. Elije a tu mesero o"}
+              {"mesera favorito/a y disfruta de un servicio a medida."}
             </h2>
             <div className="contenido flex flex-col justify-center items-center mt-2">
               <div className="colaboradores w-80 ">
                 <div className="Imagenes">
+
                   <Carousel
                     autoPlay={false}
                     showStatus={false}
                     infiniteLoop
                     selectedItem={seleccion}
                     interval={2000}
+                    className=""
                     onChange={(value, item) => {
                       setIdMesero(item.props.idMesero);
+
                     }}
                   >
                     {!isLoadingMeseros &&
-                      meseros?.map((mesero) => {
-                        return (
+                      meseros?.map((mesero) => (
+
+
+                        <div key={mesero.idMesero} idMesero={mesero.idMesero}>
                           <img
-                            key={mesero.idMesero}
-                            className="rounded-md"
+                            className="rounded-md object-cover w-64 h-64"
                             src={mesero.imagen}
                             alt={mesero.nombres}
                             width={298}
                             height={330}
                             idMesero={mesero.idMesero}
                           />
-                        );
-                      })}
+                          <p className="text-[16px] font-semibold">{mesero.nombres}</p>
+                        </div>
+                      ))}
                   </Carousel>
+
                 </div>
               </div>
               <div className="ladoDerecho font-bold">
@@ -275,8 +282,8 @@ export default function SteppThree({ className = "" }) {
                     {children
                       ? children
                       : isSelected
-                      ? "Seleccionado"
-                      : "Seleccionar"}
+                        ? "Seleccionado"
+                        : "Seleccionar"}
                   </Chip>
                 </label>
               </div>

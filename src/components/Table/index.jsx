@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from "react";
 
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip, Pagination } from "@nextui-org/react";
 
-import ModalConfirm from "../ModalConfirm";
+import ModalConfirmReserva from "../ModalConfirmReserva";
 
 import { useGetProfileQuery } from "../../redux/services/userApi";
 import { useGetReservaByIdUserQuery } from "../../redux/services/reservaApi";
@@ -21,31 +21,31 @@ const statusColorMap = {
 export default function App() {
     const { data: profile, isLoading: isLoadingProfile } = useGetProfileQuery();
     const idUser = profile?.data?.id;
+
     const { data: reserva, isLoading } = useGetReservaByIdUserQuery(idUser);
     const { data: update } = usePutUpdateReservaMutation();
 
     const [showModal, setShowModal] = useState(false);
     const [selectedReservaId, setSelectedReservaId] = useState(null);
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const rowsPerPage = 2; // Número de elementos por página
+
     const handleCancelClick = (reservaId) => {
-        console.log("Se clickeo: ", reservaId)
         setSelectedReservaId(reservaId);
         setShowModal(true);
     };
 
     const handleModalCancel = () => {
-        console.log("Se cancelooooo")
         setShowModal(false);
     };
-
-    if (isLoading) {
-        return <Load />
-    }
 
     return (
         <div>
             <Table aria-label="Example static collection table">
+
                 <TableHeader>
+                    <TableColumn>Código</TableColumn>
                     <TableColumn>Estado</TableColumn>
                     <TableColumn>Hora</TableColumn>
                     <TableColumn>Fecha</TableColumn>
@@ -57,6 +57,7 @@ export default function App() {
                 <TableBody>
                     {reserva?.data?.map((reservaItem) =>
                         <TableRow key={reservaItem.idReserva}>
+                            <TableCell>{reservaItem.idReserva}</TableCell>
                             <TableCell>
                                 <Chip
                                     className="capitalize"
@@ -76,7 +77,7 @@ export default function App() {
                             </TableCell>
                             <TableCell>
                                 <button type="button" onClick={() => handleCancelClick(reservaItem.idReserva)}>
-                                    <ModalConfirm
+                                    <ModalConfirmReserva
                                         isOpen={showModal}
                                         onClose={handleModalCancel}
                                         selectedReservaId={reservaItem.idReserva}

@@ -21,11 +21,15 @@ export default function Experiences() {
 					</div>
 					<div className="informacion_experiencia pl-8 pr-2">
 						<h2 className="text-[18px] font-bold pt-2 pb-2">
-							¿Estás cumpliendo años?
+							{"¿Estás cumpliendo años?"}
 						</h2>
 						<p className="text-[14px] pb-2">
-							Si reservas con más de 10 personas te obsequiamos la torta y una botella de champaña
+							{"Si reservas con más de 10 personas te obsequiamos la torta y una botella de champaña"}
 						</p>
+						<p className="text-[12px] font-semibold">{
+							"Debes de indicar en el apartado 'Comentario' que estás cumpliendo años"}.</p>
+						<p className="text-[12px] font-semibold">
+							{"No olvides llevar tu DNI"}</p>
 						<div className="button pt-4 animate-bounce">
 							<Link className="text-[14px] m-auto text-center text-white font-semibold bg-red-600 rounded h-[30px] p-2 hover:bg-red-700 hover:no-underline hover:cursor-pointer"
 								redirect="/reservar">
@@ -46,11 +50,11 @@ export default function Experiences() {
 						</div>
 						<div className="informacion_experiencia pl-8 pr-2">
 							<h2 className="text-[18px] font-bold pt-2 pb-2">
-								¿Te perderías esta delicia?
+								{"¿Te perderías esta delicia?"}
 							</h2>
 							<p className="text-[14px] pb-2">
-								Los mejores MAKIS solo aquí en #TerrazaBravazo
-								¡Visítanos o pídelos por delivery!
+								{"Los mejores MAKIS solo aquí en #TerrazaBravazo"}
+								{"¡Visítanos o pídelos por delivery!"}
 							</p>
 							<div className="button pt-4 animate-bounce">
 								<Link className="text-[14px] m-auto text-center text-white font-semibold bg-red-600 rounded h-[30px] p-2 hover:bg-red-700 hover:no-underline hover:cursor-pointer"
@@ -73,11 +77,11 @@ export default function Experiences() {
 						</div>
 						<div className="informacion_experiencia pl-8 pr-2">
 							<h2 className="text-[18px] font-bold pt-2 pb-2">
-								Domingos de frito
+								{"Domingos de frito"}
 							</h2>
 							<p className="text-[14px] pb-2">
-								¿Y tú ya te atreviste a probar nuestro delicioso FRITO?
-								Ven y disfruta de un desayuno Bravazo.
+								{"¿Y tú ya te atreviste a probar nuestro delicioso FRITO?"}
+								{"Ven y disfruta de un desayuno Bravazo."}
 							</p>
 							<div className="button pt-4 animate-bounce">
 								<Link className="text-[14px] m-auto text-center text-white font-semibold bg-red-600 rounded h-[30px] p-2 hover:bg-red-700 hover:no-underline hover:cursor-pointer"

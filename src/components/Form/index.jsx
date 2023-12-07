@@ -1,5 +1,5 @@
 import React from "react";
-import {Input} from "@nextui-org/react";
+import { Input, Checkbox, Link } from "@nextui-org/react";
 export default function Form({ children }) {
   return (
     <form>
@@ -10,7 +10,7 @@ export default function Form({ children }) {
         variant="bordered"
       />
       <Input
-        
+
         label="Password"
         placeholder="Enter your password"
         type="password"

@@ -19,9 +19,10 @@ export default function CustomCarousel() {
         <div className="custom-carousel">
             <div className="carousel-container">
                 {images.map((image, index) => (
-                    <div className="">
+                    <div className=""
+                        key={index}
+                    >
                         <div
-                            key={index}
                             className={`carousel-slide ${currentIndex === index ? 'active' : ''}`}
                         >
                             <img className="rotate-2 hover:rotate-3" src={image} alt={`Image ${index + 1}`} width={330} height={400} />

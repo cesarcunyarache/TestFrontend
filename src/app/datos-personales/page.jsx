@@ -10,13 +10,13 @@ import UpdateEmail from "../../components/Profile/UpdateEmail";
 import UpdatePassword from "../../components/Profile/UpdatePassword";
 
 import Load from "../../components/Load";
-export default function page() {
+export default function Page() {
   const { data: user, isLoading } = useGetProfileQuery();
 
   if (isLoading) {
-    return <Load/>
+    return <Load />
   }
- 
+
   return (
     <div>
       <Layaout>

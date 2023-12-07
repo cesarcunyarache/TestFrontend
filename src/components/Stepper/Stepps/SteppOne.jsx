@@ -72,6 +72,7 @@ const generarHoras = (fecha) => {
 };
 
 export default function SteppOne({ className = "" }) {
+
   const {
     register,
     handleSubmit,
@@ -107,15 +108,16 @@ export default function SteppOne({ className = "" }) {
     }
   }, [watch("fecha")]);
 
-  useEffect( ()=> {
+  useEffect(() => {
     dispatch(
       update({ mesas: [], cantidad: parseInt(watch("cantComensales")) })
     );
-  }, [cantComensales, nivel ])
+  }, [cantComensales, nivel])
 
   const onSubmit = handleSubmit(async (data) => {
+
     const isExists = buscarFecha(watch("hora"));
-    
+
     if (isExists) {
       dispatch(
         update({ ...data })
@@ -158,6 +160,10 @@ export default function SteppOne({ className = "" }) {
               message: "Este campo es requerido",
             },
             validate: (value) => {
+              if (value > 20) {
+                toast.error('Para reservas mayores a 20 personas rellene el formulario de Contáctanos');
+              }
+
               if (value > 20) {
                 return "La cantidad de comensales debe ser menor de o igual a 20";
               }
@@ -219,7 +225,7 @@ export default function SteppOne({ className = "" }) {
           isDisabled={horas.length === 0}
           options={{
             validate: (value) => {
-             
+
               if (value === "") {
                 return "Este campo es requerido";
               }

@@ -14,6 +14,7 @@ import { usePostReservaMesasMutation } from "../../../redux/services/reservaApi"
 import { useGetProfileQuery } from "../../../redux/services/userApi";
 
 export default function SteppTwo({ className = "" }) {
+
   const [postReservaMesas, { isLoading }] = usePostReservaMesasMutation();
 
   const { data: user } = useGetProfileQuery();
@@ -22,8 +23,6 @@ export default function SteppTwo({ className = "" }) {
 
   const { cantComensales, fecha, hora, nivel, mesas, cantidad } =
     reserva?.reservaState?.value;
-
-  console.log("DATA DE LA RESERVAAA: ", user?.data);
 
   const [data, setData] = useState([]);
 
@@ -123,14 +122,14 @@ export default function SteppTwo({ className = "" }) {
             </li>
             <li className="pr-4 flex flex-row gap-1">
               {" "}
-              <span className="bg-black rounded text-black w-4 h-4">
+              <span className="bg-white rounded border-1 border-black text-white w-4 h-4">
                 ....
               </span>{" "}
               Disponible
             </li>
             <li className="pr-4 flex flex-row gap-1">
               {" "}
-              <span className="bg-red-600 rounded text-red-600 w-4 h-4">
+              <span className="bg-black rounded text-black w-4 h-4">
                 ....
               </span>{" "}
               Seleccionado
@@ -143,14 +142,14 @@ export default function SteppTwo({ className = "" }) {
             <div className="imagenUno relative">
               <img
                 className=""
-                src="https://freepass.es/storage/seatschart/August2023/1691687721290.png"
+                src="/SalonMov.gif"
                 alt="Segundo nivel"
               />
               <div className="">
                 {!isLoading &&
-                  data.map((mesa) => {
+                  data.map((mesa, index) => {
                     if (mesa.nivel == "S") {
-                      return <Mesas data={mesa} />;
+                      return <Mesas key={index} data={mesa} />;
                     }
                   })}
               </div>
@@ -159,14 +158,14 @@ export default function SteppTwo({ className = "" }) {
             <div className="imagenUno relative">
               <img
                 className=""
-                src="https://freepass.es/storage/seatschart/November2023/1699428797713.png"
+                src="/TerrazaMov.gif"
                 alt="Tercer nivel"
               />
               <div className="">
                 {!isLoading &&
                   data.map((mesa, index) => {
-                    if (mesa.nivel == "Terraza") {
-                      return <Mesas data={mesa} />;
+                    if (mesa.nivel == "T") {
+                      return <Mesas key={index} data={mesa} />;
                     }
                   })}
               </div>

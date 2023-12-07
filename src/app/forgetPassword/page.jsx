@@ -8,7 +8,7 @@ import { usePostForgetPasswordMutation } from "../../redux/services/userApi";
 
 import { toast } from "sonner";
 
-export default function page() {
+export default function Page() {
   const { register, handleSubmit } = useForm();
 
   const [postForgetPassword, { data, isLoading }] =

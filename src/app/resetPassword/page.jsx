@@ -8,9 +8,9 @@ import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import {usePutResetPasswordMutation} from '../../redux/services/userApi'
+import { usePutResetPasswordMutation } from '../../redux/services/userApi'
 
-export default function page() {
+export default function Page() {
   const router = useRouter();
   const searchParams = useSearchParams();
 

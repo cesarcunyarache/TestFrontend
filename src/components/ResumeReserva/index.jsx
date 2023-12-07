@@ -6,6 +6,7 @@ import QRcode from "qrcode.react";
 import { useDispatch, useSelector } from "react-redux";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+import index from "../Form/Input";
 
 function formatearFecha(fechaStr) {
   const fecha = new Date(fechaStr);
@@ -19,7 +20,7 @@ function formatearFecha(fechaStr) {
   return `${diaStr}/${mesStr}/${año}`;
 }
 
-export default function index({ payload = "" }) {
+export default function Index({ payload = "" }) {
 
   const reserva = useSelector((state) => state.reserva);
   const { nombres, apellidos, fecha, hora, cantComensales, mesas, qr } =
@@ -177,9 +178,9 @@ export default function index({ payload = "" }) {
                 </tr>
               </thead>
               <tbody>
-                {mesas.map((mesa) => {
+                {mesas.map((mesa, index) => {
                   return (
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <tr key={index} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                       <td class="px-6 py-4">{mesa.codigo}</td>
                       <td class="px-6 py-4">{mesa.capacidad}</td>
                       <td class="px-6 py-4">{mesa.nivel}</td>

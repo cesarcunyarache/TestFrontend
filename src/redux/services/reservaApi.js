@@ -61,6 +61,25 @@ export const reservaApi = createApi({
       invalidatesTags: ["getReadByIdUser"],
     }),
 
+    getReadProductos: builder.query({
+      query: () => "reserva/productos/",
+    }),
+
+    putUpdatePuntos: builder.mutation({
+      query: (data) => ({
+        url: "reserva/updatePuntos",
+        method: "PUT",
+        body: data,
+        credentials: "include",
+      }),
+      invalidatesTags: ["getReadByIdUser"],
+    }),
+
+    getProductosByIdUser: builder.query({
+      query: (id) => ({ url: `reserva/productosCanjeados/${id}` }),
+      providesTags: (result, error, id) => [{ type: "getProductosByIdUser", id }],
+    }),
+
   }),
 
   tagTypes: ['getReadByIdUser'],
@@ -75,4 +94,7 @@ export const {
   useGetReservaByIdUserQuery,
   useGetPuntosByIdUserQuery,
   usePutUpdateReservaMutation,
+  useGetReadProductosQuery,
+  usePutUpdatePuntosMutation,
+  useGetProductosByIdUserQuery,
 } = reservaApi;

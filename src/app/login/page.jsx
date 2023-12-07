@@ -43,7 +43,7 @@ export default function Page() {
         onSubmit={onSubmit}
         className="max-w-md p-4 mx-auto my-auto border rounded-lg"
       >
-        <h1 className="text-center text-lg font-black my-2">Login</h1>
+        <h1 className="text-center text-lg font-black my-2">Inicio de Sesión</h1>
 
         <Input
           label="Correo"
@@ -63,8 +63,8 @@ export default function Page() {
           register={register}
         />
 
-        <div className="flex py-2  px-1 justify-between">
-          <Checkbox
+        <div className="text-right">
+          {/*<Checkbox
             classNames={{
               label: "text-small",
             }}
@@ -72,12 +72,12 @@ export default function Page() {
             color="default"
           >
             Recuérdame
-          </Checkbox>
+          </Checkbox>*/}
           <Link redirect="/forgetPassword">¿Olvidaste tu contraseña?</Link>
         </div>
 
         <Button type="submit" isLoading={isLoading}>
-          Login
+          Iniciar Sesión
         </Button>
 
         <div className="text-center my-5 text-sm">

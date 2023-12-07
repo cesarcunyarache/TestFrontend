@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { useGetProfileQuery } from "../../redux/services/userApi";
 import { useGetReservaByIdUserQuery } from "../../redux/services/reservaApi";
 
-export default function index({ selectedReservaId, estadoReserva }) {
+export default function Index({ selectedReservaId, estadoReserva }) {
 
   const { data: profile, isLoading: isLoadingProfile } = useGetProfileQuery();
   const idUser = profile?.data?.id;
@@ -14,6 +14,7 @@ export default function index({ selectedReservaId, estadoReserva }) {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [backdrop, setBackdrop] = React.useState('blur')
+
   const [putUpdateReserva, { isLoading: isLoadingUpdate }] =
     usePutUpdateReservaMutation();
 
@@ -26,14 +27,12 @@ export default function index({ selectedReservaId, estadoReserva }) {
   }
 
   const handleCancel = () => {
-    //console.log("SE CANCELÓ: ", reservaId)
-    //onClose();
+    onClose();
   }
 
   const handleConfirm = async () => {
-    console.log("IDRESERVAAA: ", selectedReservaId)
+
     if (selectedReservaId !== null && estadoReserva == 1) {
-      console.log({ idReserva: selectedReservaId, estado: 0 })
       const response = await putUpdateReserva({ idReserva: selectedReservaId, estado: 0 });
       if (response?.error) {
         console.log(response?.error);
@@ -74,7 +73,7 @@ export default function index({ selectedReservaId, estadoReserva }) {
                 </p>
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={handleCancel()}>
+                <Button color="danger" variant="light" onPress={handleCancel}>
                   Cerrar
                 </Button>
                 <Button color="primary" onPress={handleConfirm}>

@@ -1,14 +1,15 @@
 import React from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
+//import Select from "../../Form/Select";
 import Input from "../../Form/Input";
 import { Textarea } from '@nextui-org/react';
 import { Select, SelectItem } from "@nextui-org/react";
 import { toast } from "sonner";
 import Button from "../../Form/Button";
 import { useForm } from "react-hook-form";
-import { usePostContactFormMutation } from "../../../redux/services/userApi";
+import { usePostContactMutation, } from "../../../redux/services/userApi";
 
-export default function index() {
+export default function Index() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [backdrop, setBackdrop] = React.useState('blur')
 
@@ -58,16 +59,56 @@ export default function index() {
     formState: { errors },
   } = useForm();
 
-  const [PostContactForm, { data, isLoading }] =
-    usePostContactFormMutation();
+  const [PostContact, { data, isLoading }] =
+    usePostContactMutation();
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      console.log(data);
-      const response = await PostContactForm(data);
-      //const response = await putUpdate(data);
+
+      let motivo = null;
+      let tipoDocument = null;
+      // Organizar los datos del formulario en un objeto
+      if (data.motivo == 1) {
+        motivo = "Sugerencia"
+      } else if (data.motivo == 2) {
+        motivo = "Reserva"
+      } else {
+        motivo = "Otro"
+      }
+
+      if (data.idTipoDoc == 1) {
+        tipoDocument = "DNI";
+      } else if (data.idTipoDoc == 2) {
+        tipoDocument = "Carnet de Extranjería";
+      } else if (data.tipoDocument == 3) {
+        tipoDocument = "Pasaporte";
+      } else {
+        tipoDocument = "RUC"
+      }
+
+      console.log("TIPOOOO...: ", tipoDocument)
+      // Organizar los datos del formulario en un objeto
+      const formData = {
+        cabecera: "Formulario Contáctanos",
+        info: "Hola, deseo contactarme con ustedes. Mis datos son los siguientes:",
+        nombres: data.nombres,
+        apellidos: data.apellidos,
+        tipoDoc: tipoDocument,
+        documento: data.documento,
+        telefono: data.telefono,
+        correo: data.correo,
+        fecha: "2023-12-5",
+        motivo: motivo,
+        mensaje: data.mensaje,
+      };
+
+      const response = await PostContact(formData);
       if (response.error) toast.error(response.error.data.message);
-      if (response.data) toast.success(response.data.message);
+      if (response.data) {
+        toast.success(response.data.message);
+        onClose();
+      }
+      // Resto del código...
     } catch (error) {
       console.error(error);
     }
@@ -161,13 +202,17 @@ export default function index() {
                         labelPlacement="outside"
                         placeholder="Seleccione el tipo de documento"
                         label="Tipo de Documento"
-                        className="py-2"
+                        className="top-0 py-2"
+                        classNames={{
+                          label: "top-[28px]",
+                        }}
+                        //className="py-2"
                         radius="sm"
                         size="md"
                         color={errors.idTipoDoc && "danger"}
                         isInvalid={errors.idTipoDoc ? true : false}
                         errorMessage={errors.idTipoDoc && errors.idTipoDoc.message}
-                        onSelectionChange={() => setValue("numeroDoc", "")}
+                        onSelectionChange={() => setValue("idTipoDoc", "")}
                         {...register("idTipoDoc", {
                           validate: (value) => {
                             if (value === "") {
@@ -195,7 +240,7 @@ export default function index() {
                       <Input
                         label="Número de Documento"
                         placeholder=" "
-                        name="numeroDoc"
+                        name="documento"
                         defaultValue=""
                         /* isDisabled={watch("idTipoDoc") === undefined ? true : false} */
                         register={register}
@@ -218,9 +263,9 @@ export default function index() {
                             message: validateDocument[watch("idTipoDoc")]?.lengthMessage,
                           },
                         }}
-                        color={errors.numeroDoc && "danger"}
-                        isInvalid={errors.numeroDoc ? true : false}
-                        errorMessage={errors.numeroDoc && errors.numeroDoc.message}
+                        color={errors.documento && "danger"}
+                        isInvalid={errors.documento ? true : false}
+                        errorMessage={errors.documento && errors.documento.message}
 
                       />
                     </div>
@@ -272,10 +317,6 @@ export default function index() {
                             value: true,
                             message: "Este campo es requerido",
                           },
-                          valueAsNumber: {
-                            value: true,
-                            message: "Este campo debe ser numerico",
-                          },
                         }}
                         color={errors.correo && "danger"}
                         isInvalid={errors.correo ? true : false}
@@ -290,7 +331,10 @@ export default function index() {
                       labelPlacement="outside"
                       placeholder="Seleccione el motivo"
                       label="Motivo"
-                      className="py-2"
+                      className="top-0 py-2"
+                      classNames={{
+                        label: "top-[28px]",
+                      }}
                       radius="sm"
                       size="md"
                       color={errors.motivo && "danger"}
@@ -307,16 +351,10 @@ export default function index() {
                       <SelectItem key={1} value="Sugerencia">
                         Sugerencia
                       </SelectItem>
-                      <SelectItem key={2} value="Queja">
-                        Queja
-                      </SelectItem>
-                      <SelectItem key={3} value="Reclamo">
-                        Reclamo
-                      </SelectItem>
-                      <SelectItem key={4} value="Reserva">
+                      <SelectItem key={2} value="Reserva">
                         Reserva Corporativa
                       </SelectItem>
-                      <SelectItem key={5} value="Otro">
+                      <SelectItem key={3} value="Otro">
                         Otro Motivo
                       </SelectItem>
                     </Select>
