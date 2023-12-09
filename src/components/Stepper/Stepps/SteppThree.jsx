@@ -248,7 +248,7 @@ export default function SteppThree({ className = "" }) {
 
                         <div key={mesero.idMesero} idMesero={mesero.idMesero}>
                           <img
-                            className="rounded-md object-cover w-64 h-64"
+                            className="rounded-md "
                             src={mesero.imagen}
                             alt={mesero.nombres}
                             width={298}
