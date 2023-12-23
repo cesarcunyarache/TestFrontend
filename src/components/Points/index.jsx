@@ -50,12 +50,12 @@ export default function Index() {
                     <Table />
                 </div>
             </div>
-            <div>
+           {/*  <div>
                 <p className="pl-32 pt-16 text-[16px] font-semibold">Mis canjes</p>
                 <div className="tabla w-[83%] m-auto pt-8">
                     <TableCanje />
                 </div>
-            </div>
+            </div> */}
             <div>
                 <div>
                     <h2 className="pl-32 pt-16 text-[16px] font-semibold">Puedes canjear tus puntos por lo siguiente:</h2>

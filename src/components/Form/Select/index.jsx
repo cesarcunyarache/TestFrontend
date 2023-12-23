@@ -10,6 +10,9 @@ export default function Select({className="", name = "",options = {}, register =
       className={`py-2 ${className}`}
       radius="sm"
       size="md"
+      classNames={{
+        label: "top-[28px]",
+      }}
 
       {...props}
       {...register(name, options)}

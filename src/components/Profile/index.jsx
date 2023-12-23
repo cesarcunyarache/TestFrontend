@@ -96,6 +96,9 @@ export default function Profile(data = {}) {
               className="py-2"
               radius="sm"
               size="md"
+              classNames={{
+                label: "top-[28px]",
+              }}
               {...(idTipoDoc
                 ? { defaultSelectedKeys: [idTipoDoc.toString()] }
                 : {})}
@@ -296,6 +299,9 @@ export default function Profile(data = {}) {
               className=" py-2"
               radius="sm"
               size="md"
+              classNames={{
+                label: "top-[28px]",
+              }}
               {...(genero ? { defaultSelectedKeys: [genero] } : {})}
               color={errors.genero && "danger"}
               isInvalid={errors.genero ? true : false}

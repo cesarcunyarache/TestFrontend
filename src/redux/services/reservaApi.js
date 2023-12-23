@@ -38,7 +38,11 @@ export const reservaApi = createApi({
         body: data,
         credentials: "include",
       }),
-      invalidatesTags: ["meserosReservas"],
+
+      invalidatesTags: (result, error, { id }) => [
+        { type: "meserosReservas" },
+        { type: "getReadByIdUser", id },
+      ]
     }),
 
     getReservaByIdUser: builder.query({
